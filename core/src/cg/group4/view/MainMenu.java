@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Timer;
 
 
 /**
@@ -40,7 +41,7 @@ public class MainMenu implements Screen {
 	Stage stage = new Stage();
 	BitmapFont font = new BitmapFont();
     
-	int width, height, time;
+	int width, height, time=0, delay = 10, passed = 0;
 
 	@Override
 	public void show() {
@@ -54,12 +55,24 @@ public class MainMenu implements Screen {
 
         button.setPosition(width / 2f - button.getWidth() / 2f, height / 2f);
         button.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-				((Game)Gdx.app.getApplicationListener()).setScreen(new Settings());
-               System.out.println("Settings");
-            }
-        });
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				((Game) Gdx.app.getApplicationListener()).setScreen(new Settings());
+				System.out.println("Settings");
+			}
+		});
+		Timer.schedule(new Timer.Task() {
+			@Override
+			public void run() {
+				time=delay-passed;
+				if (time == 0){
+					System.out.println("done");
+				}
+				else {
+					passed++;
+				}
+			}
+		},0,1,delay);
 
         stage.addActor(button);
 	}
