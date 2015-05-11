@@ -20,7 +20,7 @@ before_install:
     - export ANDROID_HOME=`pwd`/android-sdk-linux
     - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
     - echo "sdk.dir=$ANDROID_HOME" > local.properties
-    - chmod +x ${ANDROID_HOME}/android
+    #- chmod +x android
 
     # get and install android sdk tools such as the platform and build tools
     - android update sdk --filter platform-tools --no-ui --force
