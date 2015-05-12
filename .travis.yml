@@ -20,7 +20,7 @@ before_install:
     # get and install android sdk tools such as the platform and build tools
     - echo yes | android update sdk --filter platform-tools --no-ui --force
     - echo yes | android update sdk --all --filter build-tools-20.0.0 --no-ui --force
-    - echo yes | android update sdk --filter android-21 --no-ui --force
+    - echo yes | android update sdk --filter android-19 --no-ui --force
     - echo yes | android update sdk --filter extra-android-support --no-ui --force
     - echo yes | android update sdk --filter extra-android-m2repository --no-ui --force
     - echo yes | android update sdk --filter extra-google-m2repository --no-ui --force
