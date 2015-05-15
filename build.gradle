@@ -45,7 +45,7 @@ allprojects {
 project(":core") {
     apply plugin: "java"
 	
-	apply from: "${rootProject.rootDir}/gradle/plugins.gradle"
+	apply from: "${rootProject.rootDir}/gradle/core-plugins.gradle"
 	
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
@@ -87,7 +87,7 @@ project(":android") {
 
 subprojects {
     if (!"${project}".contains("android")) {
-        apply from: "${rootProject.rootDir}/gradle/subprojects-plugins.gradle" 
+        apply from: "${rootProject.rootDir}/gradle/non-android-plugins.gradle" 
     }
 }
 

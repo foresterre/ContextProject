@@ -13,7 +13,7 @@ cobertura {
 }
 
 
-test.finalizedBy(project.tasks.cobertura)
+check.finalizedBy(project.tasks.cobertura)
 
 
 // PMD
