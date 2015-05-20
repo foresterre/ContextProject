@@ -1,6 +1,7 @@
 package cg.group4.game_logic;
 
 import cg.group4.stroll.Stroll;
+import cg.group4.util.camera.GameSkin;
 import cg.group4.util.timer.TimeKeeper;
 
 import java.util.HashSet;
@@ -24,6 +25,12 @@ public class StandUp {
      * Singleton of game logic handler.
      */
     protected static final StandUp cInstance = new StandUp();
+
+    /**
+     *  Contains the default skin that is used in the game.
+     */
+    protected GameSkin cGameSkin;
+
 
     /**
      * Stroll logic.
@@ -54,6 +61,7 @@ public class StandUp {
      */
     private StandUp() {
         cTimeKeeper = new TimeKeeper();
+        cGameSkin = new GameSkin();
         cGameMechanics = new HashSet<GameMechanic>();
         cSubscribersGameMechanics = new HashSet<GameMechanic>();
         cUnsubscribersGameMechanics = new HashSet<GameMechanic>();
@@ -72,7 +80,7 @@ public class StandUp {
      * Starts a new stroll.
      */
     public void startStroll(){
-        if(cStroll == null) {
+        if (cStroll == null) {
             cTimeKeeper.getTimer("INTERVAL").reset();
             cStroll = new Stroll();
         } else {
@@ -105,6 +113,14 @@ public class StandUp {
     }
 
     /**
+     * Getter for the default game skin.
+     * @return cGameSkin.
+     */
+    public GameSkin getGameSkin(){
+        return cGameSkin;
+    }
+
+    /**
      * Getter for Stroll.
      * @return cStroll
      */
@@ -121,17 +137,17 @@ public class StandUp {
         cUnsubscribersGameMechanics.clear();
         cSubscribersGameMechanics.clear();
 
-        for(GameMechanic gm : cGameMechanics) {
+        for (GameMechanic gm : cGameMechanics) {
             gm.update();
         }
 
     }
 
-    public void subscribe(GameMechanic gameMechanic) {
+    public void subscribe(final GameMechanic gameMechanic) {
         cSubscribersGameMechanics.add(gameMechanic);
     }
 
-    public void unSubscribe(GameMechanic gameMechanic) {
+    public void unSubscribe(final GameMechanic gameMechanic) {
         cUnsubscribersGameMechanics.add(gameMechanic);
     }
 }

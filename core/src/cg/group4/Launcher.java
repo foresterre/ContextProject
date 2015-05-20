@@ -2,13 +2,10 @@ package cg.group4;
 
 import cg.group4.game_logic.StandUp;
 import cg.group4.util.camera.WorldRenderer;
-import cg.group4.util.timer.TimeKeeper;
-import cg.group4.view.MainMenu;
-import cg.group4.view.TestScreen;
-import cg.group4.view.TestScreen2;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 
 /**
  * The Launcher class serves as an input point for the LibGDX application.
@@ -23,6 +20,10 @@ import com.badlogic.gdx.Gdx;
  * @author Jurgen van Schagen
  */
 public class Launcher extends Game {
+    /**
+     * Used to clear all preferences and other data to start with a 'clean' game.
+     */
+    public static final boolean CLEAR_SETTINGSS = false;
 	/**
 	 * Handles viewport and camera. Also draws sprites properly in the game world.
 	 */
@@ -40,10 +41,16 @@ public class Launcher extends Game {
 	 */
 	@Override
 	public final void create() {
+        if(CLEAR_SETTINGSS){
+            Preferences preferences = Gdx.app.getPreferences("TIMER");
+            preferences.clear();
+            preferences.flush();
+
+        }
 		cStandUp = StandUp.getInstance();
         cStandUp.init();
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
-		setScreen(new MainMenu());
+		setScreen(new WorldRenderer());
 	}
 
 	/**
