@@ -1,5 +1,7 @@
 package cg.group4.util.camera;
 
+import cg.group4.container.sound.MusicFactory;
+import cg.group4.game_logic.StandUp;
 import cg.group4.view.ScreenLogic;
 import cg.group4.view.HomeScreen;
 import com.badlogic.gdx.Gdx;
@@ -104,7 +106,7 @@ public class WorldRenderer implements Screen {
      * Creates a simple music player. To be refactored later.
      */
     protected final void createMusicPlayer(){
-        music = Gdx.audio.newMusic(Gdx.files.internal("music/Summer Day.mp3"));
+        music = StandUp.getInstance().getAssets().getMusicStorage().get("BackgroundMusic");
         music.setLooping(true);
         music.play();
     }

@@ -1,5 +1,6 @@
 package cg.group4.game_logic;
 
+import cg.group4.container.Assets;
 import cg.group4.stroll.Stroll;
 import cg.group4.util.camera.GameSkin;
 import cg.group4.util.camera.WorldRenderer;
@@ -50,6 +51,11 @@ public class StandUp {
     protected TimeKeeper cTimeKeeper;
 
     /**
+     * Asset container.
+     */
+    protected Assets cAssets;
+
+    /**
      * list of all the subscribed game mechanics.
      */
     protected Set<GameMechanic> cGameMechanics;
@@ -68,6 +74,7 @@ public class StandUp {
      */
     private StandUp() {
         cTimeKeeper = new TimeKeeper();
+        cAssets = new Assets();
         cGameMechanics = new HashSet<GameMechanic>();
         cSubscribersGameMechanics = new HashSet<GameMechanic>();
         cUnsubscribersGameMechanics = new HashSet<GameMechanic>();
@@ -122,6 +129,12 @@ public class StandUp {
     public TimeKeeper getTimeKeeper() {
         return cTimeKeeper;
     }
+
+    /**
+     * Getter for Assets.
+     * @return cAssets
+     */
+    public Assets getAssets() { return cAssets; }
 
     /**
      * Getter for the default game skin.

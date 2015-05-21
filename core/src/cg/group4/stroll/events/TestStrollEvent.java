@@ -4,10 +4,9 @@ import cg.group4.game_logic.StandUp;
 import cg.group4.util.timer.Timer;
 import cg.group4.util.timer.TimerTask;
 import cg.group4.view.EventScreen;
-
 import cg.group4.view.ScreenLogic;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
@@ -58,7 +57,7 @@ public class TestStrollEvent extends StrollEvent {
 	/**
 	 * Sound effect played when a task is completed.
 	 */
-	protected final Sound cCompletedTaskSound;
+	protected final Music cCompletedTaskSound;
 
 	/**
 	 * Whether or not the input is delayed.
@@ -93,7 +92,7 @@ public class TestStrollEvent extends StrollEvent {
 		super();
 		cScreen = new EventScreen(StandUp.getInstance().getWorldRenderer());
 		cLabel = ((EventScreen)cScreen).getLabel();
-		cCompletedTaskSound = Gdx.audio.newSound(Gdx.files.internal("sounds/completedTask.wav"));
+		cCompletedTaskSound = StandUp.getInstance().getAssets().getMusicStorage().get("CompletedTaskMusic");
 		tasksCompleted = 0;
 		prevOperationNr = 0;
 		
@@ -173,7 +172,7 @@ public class TestStrollEvent extends StrollEvent {
 	 */
 	public final void taskCompleted() {
 		this.tasksCompleted++;
-		cCompletedTaskSound.play(1.0f);
+		cCompletedTaskSound.play();
 		if (this.tasksCompleted < MAX_TASKS) {
 			//cDelayTaskTimer.reset();
 			prevOperationNr = operationNr;
