@@ -17,12 +17,10 @@ import static org.mockito.Mockito.verify;
 public class MusicStorageTest extends TestCase {
 
     MusicStorage msMock;
-    MusicStorage ms;
 
     @Before
     public void setUp() throws Exception {
         msMock = spy(MusicStorage.class);
-        ms = new MusicStorage();
     }
 
     @After
