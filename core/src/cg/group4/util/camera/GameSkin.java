@@ -1,10 +1,8 @@
 package cg.group4.util.camera;
 
-import cg.group4.container.Assets;
 import cg.group4.game_logic.StandUp;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -89,7 +87,7 @@ public class GameSkin extends Skin {
         buttonStyle.fontColor = Color.GREEN;
         buttonStyle.font = this.get("default_font", BitmapFont.class);
 
-        Sprite sprite = new Sprite(StandUp.getInstance().getAssets().getcTextureStorage().get("WoodMenuTexture"));
+        Sprite sprite = new Sprite(StandUp.getInstance().getAssets().getTextureStorage().get("WoodMenuTexture"));
         final float scalar = 0.42f;
         sprite.setSize(sprite.getWidth() * scalar * UI_SCALAR, sprite.getHeight() * scalar * UI_SCALAR);
 
