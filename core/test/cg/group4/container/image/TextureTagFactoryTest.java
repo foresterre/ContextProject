@@ -18,7 +18,7 @@ public class TextureTagFactoryTest extends TestCase {
     @Before
     public void setUp() throws Exception {
         ttf = new TextureTagFactory();
-        ttfMock = spy(TextureTagFactory.class);
+        ttfMock = mock(TextureTagFactory.class);
     }
 
     @After
@@ -29,9 +29,6 @@ public class TextureTagFactoryTest extends TestCase {
 
     @Test
     public void testGetWoodMenuTextureTag() throws Exception {
-        final String EXPECTED = WoodMenuTexture.class.getSimpleName();
-        assertEquals(EXPECTED, ttf.getWoodMenuTextureTag());
-
         ttfMock.getWoodMenuTextureTag();
         verify(ttfMock, times(1)).getWoodMenuTextureTag();
     }

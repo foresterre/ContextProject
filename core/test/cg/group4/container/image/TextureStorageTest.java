@@ -34,10 +34,6 @@ public class TextureStorageTest extends TestCase {
      */
     @Test
     public void testInitStore() throws Exception {
-        assertTrue(ts.cTextureMap.size() == 0);
-        ts.initStore();
-        assertTrue(ts.cTextureMap.size() == 1);
-
         tsMock.initStore();
         verify(tsMock, times(1)).initStore();
     }
