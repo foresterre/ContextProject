@@ -6,7 +6,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
@@ -19,7 +18,7 @@ public class TextureFactoryTest extends TestCase {
 
     @Before
     public void setUp() throws Exception {
-        tf = spy(TextureFactory.class);
+        tf = mock(TextureFactory.class);
         tex = mock(Texture.class);
     }
 

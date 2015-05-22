@@ -1,16 +1,11 @@
 package cg.group4.container.image;
 
-import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Texture;
 import junit.framework.TestCase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 /**
  * Tests for the texture storage.
@@ -39,10 +34,12 @@ public class TextureStorageTest extends TestCase {
      */
     @Test
     public void testInitStore() throws Exception {
-        assertTrue(tsMock.cTextureMap.size() == 0);
+        assertTrue(ts.cTextureMap.size() == 0);
+        ts.initStore();
+        assertTrue(ts.cTextureMap.size() == 1);
+
         tsMock.initStore();
         verify(tsMock, times(1)).initStore();
-        assertTrue(tsMock.cTextureMap.size() == 1);
     }
 
     @Test

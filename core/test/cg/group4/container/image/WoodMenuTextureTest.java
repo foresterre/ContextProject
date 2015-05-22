@@ -1,15 +1,11 @@
 package cg.group4.container.image;
 
-import cg.group4.container.sound.WoodMenuTexture;
 import junit.framework.TestCase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by Martijn on 2015-05-22.

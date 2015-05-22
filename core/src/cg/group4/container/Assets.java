@@ -33,5 +33,5 @@ public class Assets {
     public MusicStorage getMusicStorage() {
         return cMusicStorage;
     }
-    public TextureStorage getcTextureStorage() { return cTextureStorage; }
+    public TextureStorage getTextureStorage() { return cTextureStorage; }
 }

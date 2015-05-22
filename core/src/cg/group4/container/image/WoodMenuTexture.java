@@ -1,8 +1,6 @@
-package cg.group4.container.sound;
+package cg.group4.container.image;
 
-import cg.group4.container.image.ITexture;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 
@@ -33,7 +31,8 @@ public class WoodMenuTexture implements ITexture {
      * Constructs a new texture file.
      */
     public WoodMenuTexture() {
-        cTexture = new Texture(Gdx.files.internal(PATH));
+        FileHandle handle = Gdx.files.internal(PATH);
+        cTexture = new Texture(handle);
     }
 
     /**
