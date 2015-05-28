@@ -5,13 +5,18 @@ package cg.group4.container.image;
  */
 public class TextureTagFactory {
 
-    public TextureTagFactory(){}
+    /**
+     * Creates a new TextureTagFactory.
+     */
+    public TextureTagFactory() {
+    }
 
     /**
-     * Returns the tag of the texure.
+     * Returns the tag of the texture.
+     *
      * @return String
      */
-    public String getWoodMenuTextureTag() {
+    public final String getWoodMenuTextureTag() {
         return new WoodMenuTexture().tag();
     }
 }

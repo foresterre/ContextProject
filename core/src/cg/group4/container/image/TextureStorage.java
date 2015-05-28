@@ -1,7 +1,5 @@
 package cg.group4.container.image;
 
-import cg.group4.container.image.TextureFactory;
-import cg.group4.container.image.TextureTagFactory;
 import com.badlogic.gdx.graphics.Texture;
 
 import java.util.HashMap;
@@ -17,7 +15,7 @@ import java.util.Map;
 public class TextureStorage {
 
     /**
-     * Factory used to get the exture files.
+     * Factory used to get the texture files.
      */
     protected TextureFactory cTextureFactory;
 
@@ -34,7 +32,7 @@ public class TextureStorage {
     protected Map<String, Texture> cTextureMap;
 
     /**
-     *
+     * Creates a new Texture storage.
      */
     public TextureStorage() {
         cTextureMap = new HashMap<String, Texture>();
@@ -45,14 +43,18 @@ public class TextureStorage {
     /**
      * Stores each texture in the map, for reuse.
      */
-    public void initStore() {
+    public final void initStore() {
         // wood menu image
         cTextureMap.put(cTextureTagFactory.getWoodMenuTextureTag(), cTextureFactory.getWoodMenuTexture());
     }
 
-    public Texture get(String tag) {
+    /**
+     * Returns the texture with the given tag.
+     *
+     * @param tag The given tag.
+     * @return The texture.
+     */
+    public final Texture get(final String tag) {
         return cTextureMap.get(tag);
     }
-
-
 }

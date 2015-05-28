@@ -1,6 +1,5 @@
-package cg.group4.container.sound;
+package cg.group4.container.music;
 
-import com.badlogic.gdx.audio.Music;
 
 /**
  * Factory for tags of different songs.
@@ -16,17 +15,19 @@ public class MusicTagFactory {
 
     /**
      * Tag for the background music.
+     *
      * @return String tag
      */
-    public String getBackgroundMusicTag() {
+    public final String getBackgroundMusicTag() {
         return new BackgroundMusic().tag();
     }
 
     /**
      * Tag for the completed task music.
+     *
      * @return String tag
      */
-    public String getCompletedTaskMusicTag() {
+    public final String getCompletedTaskMusicTag() {
         return new CompletedTaskMusic().tag();
     }
 

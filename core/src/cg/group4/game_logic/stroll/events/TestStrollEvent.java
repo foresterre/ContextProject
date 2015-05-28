@@ -93,7 +93,7 @@ public class TestStrollEvent extends StrollEvent {
         super();
         cScreen = new EventScreen();
         cLabel = cScreen.getLabel();
-        cCompletedTaskSound = Gdx.audio.newSound(Gdx.files.internal("sounds/completedTask.wav"));
+        cCompletedTaskSound = Gdx.audio.newSound(Gdx.files.internal("music/completedTask.wav"));
         tasksCompleted = 0;
         prevOperationNr = 0;
 

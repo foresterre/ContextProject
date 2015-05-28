@@ -1,25 +1,25 @@
-package cg.group4.container.sound;
+package cg.group4.container.music;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.files.FileHandle;
 
 /**
- * Class for the completed task music specification.
+ * Class for the background music specification.
+ *
  * @author Martijn Gribnau
  */
-public class CompletedTaskMusic implements IMusic {
+public class BackgroundMusic implements IMusic {
 
     /**
      * Tag for the music.
      */
-    protected final String TAG = this.getClass().getSimpleName();
+    protected static final String TAG = BackgroundMusic.class.getSimpleName();
+
 
     /**
      * Filepath for the music.
      */
-    protected final String PATH = "music/completedTask.wav";
-
+    protected static final String PATH = "music/Summer Day.mp3";
 
     /**
      * The music file to be loaded.
@@ -29,26 +29,27 @@ public class CompletedTaskMusic implements IMusic {
     /**
      * Constructs a new music file.
      */
-    public CompletedTaskMusic() {
-        FileHandle handle = Gdx.files.internal(PATH);
-        cMusic = Gdx.audio.newMusic(handle);
+    public BackgroundMusic() {
+        cMusic = Gdx.audio.newMusic(Gdx.files.internal(PATH));
     }
 
     /**
      * Returns the music contained by the BackgroundMusic.
+     *
      * @return Music
      */
     @Override
-    public Music get() {
+    public final Music get() {
         return cMusic;
     }
 
     /**
-     * Returns the tag of the completed task music.
-     * @return
+     * Returns the tag for the background music.
+     *
+     * @return String tag
      */
     @Override
-    public String tag() {
+    public final String tag() {
         return TAG;
     }
 
@@ -57,7 +58,8 @@ public class CompletedTaskMusic implements IMusic {
      * Use when it is no longer needed.
      */
     @Override
-    public void dispose() {
+    public final void dispose() {
         cMusic.dispose();
     }
+
 }

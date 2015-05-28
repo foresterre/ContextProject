@@ -117,7 +117,7 @@ public class Timer {
         setFinishTime();
         cRemainingTime = (int) (cFinishTime - System.currentTimeMillis()) / MILLISEC_IN_SEC;
         if (cRemainingTime < 0) {
-            cRemainingTime =  0;
+            cRemainingTime = 0;
         }
         TimeKeeper.getInstance().addTimer(this);
     }

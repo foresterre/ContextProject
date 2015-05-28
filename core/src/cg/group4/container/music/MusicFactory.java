@@ -1,4 +1,4 @@
-package cg.group4.container.sound;
+package cg.group4.container.music;
 
 import com.badlogic.gdx.audio.Music;
 
@@ -17,17 +17,19 @@ public class MusicFactory {
 
     /**
      * Returns the background music as Music object.
+     *
      * @return Music
      */
-    public Music getBackgroundMusic() {
+    public final Music getBackgroundMusic() {
         return new BackgroundMusic().get();
     }
 
     /**
      * Returns the completed task music as Music object.
+     *
      * @return Music
      */
-    public Music getCompletedTaskMusic() {
+    public final Music getCompletedTaskMusic() {
         return new CompletedTaskMusic().get();
     }
 

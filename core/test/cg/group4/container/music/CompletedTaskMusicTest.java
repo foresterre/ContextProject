@@ -1,8 +1,10 @@
-package cg.group4.container.sound;
+package cg.group4.container.music;
 
-import junit.framework.TestCase;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
@@ -10,81 +12,77 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 /**
  * Tests for the completed task music.
  */
-public class CompletedTaskMusicTest extends TestCase {
+public class CompletedTaskMusicTest {
 
     /**
      * Test object.
      */
-    CompletedTaskMusic ctm;
+    protected CompletedTaskMusic ctm;
 
     /**
      * Mocked test object.
      */
-    CompletedTaskMusic ctmm;
+    protected CompletedTaskMusic ctmm;
 
     /**
      * Setup CompletedTaskMusic objects.
-     * @throws Exception exception if any
      */
-    @Override
-    public void setUp() throws Exception {
+    @Before
+    public final void setUp() {
         ctm = new CompletedTaskMusic();
         ctmm = spy(CompletedTaskMusic.class);
     }
 
     /**
      * Tear down CompletedTaskMusic objects.
-     * @throws Exception exception if any
      */
-    @Override
-    public void tearDown() throws Exception {
+    @After
+    public final void tearDown() {
         ctm = null;
         ctmm = null;
     }
 
     /**
      * Setup CompletedTaskMusic objects.
-     * @throws Exception exception if any
      */
     @Test
-    public void testPathConst() {
-        assertEquals("music/completedTask.wav", ctm.PATH);
+    public final void testPathConst() {
+        assertEquals("music/completedTask.wav", CompletedTaskMusic.PATH);
     }
 
     /**
      * Tests TAG.
      */
     @Test
-    public void testTagConst() {
-        assertEquals("CompletedTaskMusic", ctm.TAG);
+    public final void testTagConst() {
+        assertEquals("CompletedTaskMusic", ctm.tag());
     }
 
     /**
      * Tests get().
-     * @throws Exception exception catch if any
      */
     @Test
-    public void testGet() throws Exception {
+    public final void testGet() {
         ctmm.get();
         verify(ctmm, times(1)).get();
     }
 
     /**
      * Tests tag().
-     * @throws Exception exception catch if any
      */
     @Test
-    public void testTag() throws Exception {
+    public final void testTag() {
         final String expected = CompletedTaskMusic.class.getSimpleName();
         assertEquals(expected, ctm.tag());
     }
 
     /**
      * Tests dispose().
+     *
      * @throws Exception exception catch if any
      */
     @Test
-    public void testDispose() throws Exception {
+    public final void testDispose() throws Exception {
         ctmm.dispose();
         verify(ctmm, times(1)).dispose();
     }

@@ -1,6 +1,5 @@
 package cg.group4.container.image;
 
-import junit.framework.TestCase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,32 +9,32 @@ import static org.mockito.Mockito.*;
 /**
  * Tests for the texture storage.
  */
-public class TextureStorageTest extends TestCase {
+public class TextureStorageTest {
 
     /**
      * TextureStorage (object).
      */
-    TextureStorage ts;
+    protected TextureStorage ts;
 
     /**
      * TextureStorage (mock object).
      */
-    TextureStorage tsMock;
+    protected TextureStorage tsMock;
 
     /**
      * Setup TextureStorage's.
      */
     @Before
-    public void setUp() throws Exception {
+    public final void setUp() {
         ts = new TextureStorage();
         tsMock = mock(TextureStorage.class);
     }
 
     /**
-     * Tear down TextureStorages.
+     * Tear down TextureStorage.
      */
     @After
-    public void tearDown() throws Exception {
+    public final void tearDown() {
         ts = null;
         tsMock = null;
     }
@@ -43,10 +42,9 @@ public class TextureStorageTest extends TestCase {
     /**
      * Tests whether all the initial textures are added to the map.
      * Tests by side effects.
-     * @throws Exception
      */
     @Test
-    public void testInitStore() throws Exception {
+    public final void testInitStore() {
         tsMock.initStore();
         verify(tsMock, times(1)).initStore();
     }
@@ -55,7 +53,7 @@ public class TextureStorageTest extends TestCase {
      * Tests whether the menu texture can be found.
      */
     @Test
-    public void testGet() throws Exception {
+    public final void testGet() {
         tsMock.get("WoodMenuTexture");
         verify(tsMock, times(1)).get("WoodMenuTexture");
 

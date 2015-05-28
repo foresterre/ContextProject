@@ -1,12 +1,12 @@
-package cg.group4.container.sound;
+package cg.group4.container.music;
 
 import cg.group4.GdxTestRunner;
-import junit.framework.TestCase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
@@ -15,34 +15,32 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
  * Tests for the BackgroundMusic class.
  */
 @RunWith(GdxTestRunner.class)
-public class BackgroundMusicTest extends TestCase {
+public class BackgroundMusicTest {
 
     /**
      * BackgroundMusic test object.
      */
-    BackgroundMusic bg;
+    protected BackgroundMusic bg;
 
     /**
      * BackgroundMusic spy object.
      */
-    BackgroundMusic bgm;
+    protected BackgroundMusic bgm;
 
     /**
      * Setup background music tests.
-     * @throws Exception exception catch if any
      */
     @Before
-    public void setUp() throws Exception {
+    public final void setUp() {
         bg = new BackgroundMusic();
         bgm = spy(BackgroundMusic.class);
     }
 
     /**
      * Tear down background music tests.
-     * @throws Exception exception catch if any
      */
     @After
-    public void tearDown() throws Exception {
+    public final void tearDown() {
         bg = null;
         bgm = null;
     }
@@ -51,46 +49,43 @@ public class BackgroundMusicTest extends TestCase {
      * Test path.
      */
     @Test
-    public void testPathConst() {
-        final String REQUIRE = "music/Summer Day.mp3";
-        assertEquals(REQUIRE, bg.PATH);
+    public final void testPathConst() {
+        final String path = "music/Summer Day.mp3";
+        assertEquals(path, BackgroundMusic.PATH);
     }
 
     /**
      * Test tag.
      */
     @Test
-    public void testTagConst() {
-        final String REQUIRE = "BackgroundMusic";
-        assertEquals(REQUIRE, bg.TAG);
+    public final void testTagConst() {
+        final String path = "BackgroundMusic";
+        assertEquals(path, bg.tag());
     }
 
     /**
      * Test get().
-     * @throws Exception exception catch if any
      */
     @Test
-    public void testGet() throws Exception {
+    public final void testGet() {
         bgm.get();
         verify(bgm, times(1)).get();
     }
 
     /**
      * Test tag().
-     * @throws Exception exception catch if any
      */
     @Test
-    public void testTag() throws Exception {
-        final String REQUIRE = BackgroundMusic.class.getSimpleName();
-        assertEquals(REQUIRE, bg.tag());
+    public final void testTag() {
+        final String tag = BackgroundMusic.class.getSimpleName();
+        assertEquals(tag, bg.tag());
     }
 
     /**
      * Test dispose().
-     * @throws Exception exception catch if any
      */
     @Test
-    public void testDispose() throws Exception {
+    public final void testDispose() {
         bgm.dispose();
         verify(bgm, times(1)).dispose();
     }

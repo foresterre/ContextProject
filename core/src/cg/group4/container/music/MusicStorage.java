@@ -1,4 +1,4 @@
-package cg.group4.container.sound;
+package cg.group4.container.music;
 
 import com.badlogic.gdx.audio.Music;
 
@@ -30,23 +30,29 @@ public class MusicStorage {
     /**
      *
      */
-	public MusicStorage() {
+    public MusicStorage() {
         cSoundMap = new HashMap<String, Music>();
         cMusicFactory = new MusicFactory();
         cMusicTagFactory = new MusicTagFactory();
-	}
+    }
 
     /**
      * Stores each music type in the map, for reuse.
      */
-    public void initStore() {
+    public final void initStore() {
         // background music
         cSoundMap.put(cMusicTagFactory.getBackgroundMusicTag(), cMusicFactory.getBackgroundMusic());
         // completed task music
         cSoundMap.put(cMusicTagFactory.getCompletedTaskMusicTag(), cMusicFactory.getCompletedTaskMusic());
     }
 
-    public Music get(String tag) {
+    /**
+     * Getter for a music object with the given tag.
+     *
+     * @param tag The given tag.
+     * @return The music object.
+     */
+    public final Music get(final String tag) {
         return cSoundMap.get(tag);
     }
 

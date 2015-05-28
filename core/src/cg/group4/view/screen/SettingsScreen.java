@@ -95,7 +95,7 @@ public final class SettingsScreen extends ScreenLogic {
         return new ChangeListener() {
             @Override
             public void changed(final ChangeEvent event, final Actor actor) {
-               cIntervalTimer.reset();
+                cIntervalTimer.reset();
             }
         };
     }

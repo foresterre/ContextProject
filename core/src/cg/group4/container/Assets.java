@@ -1,7 +1,7 @@
 package cg.group4.container;
 
 import cg.group4.container.image.TextureStorage;
-import cg.group4.container.sound.MusicStorage;
+import cg.group4.container.music.MusicStorage;
 
 /**
  * Container class for all assets.
@@ -11,12 +11,12 @@ public class Assets {
     /**
      * Container for the music files.
      */
-    MusicStorage cMusicStorage;
+    protected MusicStorage cMusicStorage;
 
     /**
      * Container for texture files.
      */
-    TextureStorage cTextureStorage;
+    protected TextureStorage cTextureStorage;
 
     /**
      * Initializes the assets.
@@ -31,15 +31,19 @@ public class Assets {
 
     /**
      * MusicStorage getter.
+     *
      * @return music storage.
      */
-    public MusicStorage getMusicStorage() {
+    public final MusicStorage getMusicStorage() {
         return cMusicStorage;
     }
 
     /**
      * TextureStorage getter.
+     *
      * @return texture storage.
      */
-    public TextureStorage getTextureStorage() { return cTextureStorage; }
+    public final TextureStorage getTextureStorage() {
+        return cTextureStorage;
+    }
 }

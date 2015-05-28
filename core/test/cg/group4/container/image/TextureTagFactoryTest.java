@@ -1,6 +1,5 @@
 package cg.group4.container.image;
 
-import junit.framework.TestCase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,23 +9,23 @@ import static org.mockito.Mockito.*;
 /**
  * Tests for the texture tag factory.
  */
-public class TextureTagFactoryTest extends TestCase {
+public class TextureTagFactoryTest {
 
     /**
      * TextureTagFactory (object).
      */
-    TextureTagFactory ttf;
+    protected TextureTagFactory ttf;
 
     /**
      * TextureTagFactory (mock object).
      */
-    TextureTagFactory ttfMock;
+    protected TextureTagFactory ttfMock;
 
     /**
      * Setup TextureTagFactory.
      */
     @Before
-    public void setUp() throws Exception {
+    public final void setUp() {
         ttf = new TextureTagFactory();
         ttfMock = mock(TextureTagFactory.class);
     }
@@ -35,7 +34,7 @@ public class TextureTagFactoryTest extends TestCase {
      * Tear down TextureTagFactory.
      */
     @After
-    public void tearDown() throws Exception {
+    public final void tearDown() {
         ttf = null;
         ttfMock = null;
     }
@@ -44,7 +43,7 @@ public class TextureTagFactoryTest extends TestCase {
      * Test TextureTagFactory (getWoodMenuTextureTag).
      */
     @Test
-    public void testGetWoodMenuTextureTag() throws Exception {
+    public final void testGetWoodMenuTextureTag() {
         ttfMock.getWoodMenuTextureTag();
         verify(ttfMock, times(1)).getWoodMenuTextureTag();
     }

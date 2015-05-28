@@ -112,9 +112,12 @@ public final class StandUp {
 
     /**
      * Getter for Assets.
+     *
      * @return cAssets
      */
-    public Assets getAssets() { return cAssets; }
+    public Assets getAssets() {
+        return cAssets;
+    }
 
     /**
      * Getter for the subject to subscribe to to get updated every render cycle.

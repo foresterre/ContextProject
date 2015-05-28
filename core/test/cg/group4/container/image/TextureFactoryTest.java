@@ -1,33 +1,33 @@
 package cg.group4.container.image;
 
 import com.badlogic.gdx.graphics.Texture;
-import junit.framework.TestCase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.mockito.Mockito.*;
 
+
 /**
  * Tests for the texture factory.
  */
-public class TextureFactoryTest extends TestCase {
+public class TextureFactoryTest {
 
     /**
      * TextureFactory mock.
      */
-    TextureFactory tf;
+    protected TextureFactory tf;
 
     /**
      * Texture mock.
      */
-    Texture tex;
+    protected Texture tex;
 
     /**
      * Setup mocks.
      */
     @Before
-    public void setUp() throws Exception {
+    public final void setUp() {
         tf = mock(TextureFactory.class);
         tex = mock(Texture.class);
     }
@@ -36,7 +36,7 @@ public class TextureFactoryTest extends TestCase {
      * Tear down mocks.
      */
     @After
-    public void tearDown() throws Exception {
+    public final void tearDown() {
         tf = null;
         tex = null;
     }
@@ -45,7 +45,7 @@ public class TextureFactoryTest extends TestCase {
      * Get wood menu texture test.
      */
     @Test
-    public void testGetWoodMenuTexture() throws Exception {
+    public final void testGetWoodMenuTexture() {
         when(tf.getWoodMenuTexture()).thenReturn(tex);
 
         tf.getWoodMenuTexture();
