@@ -1,11 +1,12 @@
-package cg.group4.view;
+package cg.group4.view.screen;
 
-import cg.group4.game_logic.StandUp;
-import cg.group4.util.camera.WorldRenderer;
+import cg.group4.util.timer.TimeKeeper;
 import cg.group4.util.timer.Timer;
+import cg.group4.view.screen_mechanics.ScreenLogic;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
@@ -14,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
  * @author Jurgen van Schagen
  * @author Martijn Gribnau
  */
-public class SettingsScreen extends ScreenLogic {
+public final class SettingsScreen extends ScreenLogic {
 
     /**
      * Container group used for the layout of the view.
@@ -29,31 +30,27 @@ public class SettingsScreen extends ScreenLogic {
             cButtonStopInterval,
             cButtonBack;
 
-    /**
-     * Initializes the settings screen.
-     * @param worldRenderer The camera viewport
-     */
-    public SettingsScreen(final WorldRenderer worldRenderer) {
-        super(worldRenderer);
-        createTable();
-        createGUI();
-
-        setAsActiveScreen();
-    }
-
-    /**
-     * Initializes the table container.
-     */
-    protected final void createTable() {
+    @Override
+    protected WidgetGroup createWidgetGroup() {
         cTable = new Table();
         cTable.setFillParent(true);
-//        cTable.debugAll();
+        createGUI();
+        return cTable;
+    }
+
+    @Override
+    protected void rebuildWidgetGroup() {
+        getWidgetGroup();
+        cButtonResetInterval.setStyle(cGameSkin.get("default_textButtonStyle", TextButton.TextButtonStyle.class));
+        cButtonResetStroll.setStyle(cGameSkin.get("default_textButtonStyle", TextButton.TextButtonStyle.class));
+        cButtonStopInterval.setStyle(cGameSkin.get("default_textButtonStyle", TextButton.TextButtonStyle.class));
+        cButtonBack.setStyle(cGameSkin.get("default_textButtonStyle", TextButton.TextButtonStyle.class));
     }
 
     /**
      * Creates the buttons of the settings menu and adds an event listener for each of them.
      */
-    protected final void createGUI() {
+    protected void createGUI() {
         cButtonResetInterval = createButton("Reset Interval");
         cButtonResetInterval.addListener(resetIntervalBehaviour());
 
@@ -70,27 +67,29 @@ public class SettingsScreen extends ScreenLogic {
 
     /**
      * Resets the interval timer to its default time.
+     *
      * @return ChangeListener
      */
-    protected final ChangeListener resetIntervalBehaviour() {
+    protected ChangeListener resetIntervalBehaviour() {
         return new ChangeListener() {
             @Override
             public void changed(final ChangeEvent event, final Actor actor) {
-                StandUp.getInstance().getTimeKeeper().getTimer(Timer.Global.INTERVAL.name()).reset();
+                TimeKeeper.getInstance().getTimer(Timer.Global.INTERVAL.name()).reset();
             }
         };
     }
 
     /**
      * Resets the scroll timer to its default time.
+     *
      * @return ChangeListener
      */
-    protected final ChangeListener resetStrollBehaviour() {
+    protected ChangeListener resetStrollBehaviour() {
         return new ChangeListener() {
             @Override
             public void changed(final ChangeEvent event, final Actor actor) {
-                StandUp.getInstance().getTimeKeeper().getTimer(Timer.Global.STROLL.name()).reset();
-                //cWorldRenderer.setScreen(new RewardScreen(cWorldRenderer));
+                TimeKeeper.getInstance().getTimer(Timer.Global.STROLL.name()).reset();
+                //cScreenStore.setScreen(new RewardScreen(cScreenStore));
             }
         };
     }
@@ -98,45 +97,47 @@ public class SettingsScreen extends ScreenLogic {
     /**
      * Stops the interval timer.
      * Resets the internal preferences. By doing so it won't be able to start off the time on which it stopped.
+     *
      * @return ChangeListener
      */
-    protected final ChangeListener stopIntervalBehaviour() {
+    protected ChangeListener stopIntervalBehaviour() {
         return new ChangeListener() {
             @Override
             public void changed(final ChangeEvent event, final Actor actor) {
-                StandUp.getInstance().getTimeKeeper().getTimer(Timer.Global.INTERVAL.name()).stop();
+                TimeKeeper.getInstance().getTimer(Timer.Global.INTERVAL.name()).stop();
             }
         };
     }
 
     /**
-     * Sets the screen to the home menu
+     * Sets the screen to the home menu.
+     *
      * @return ChangeListener
      */
-    protected ChangeListener backBehaviour(){
+    protected ChangeListener backBehaviour() {
         return new ChangeListener() {
             @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                cWorldRenderer.setScreen(new HomeScreen(cWorldRenderer));
+            public void changed(final ChangeEvent event, final Actor actor) {
+                cScreenStore.setScreen("Home");
             }
         };
     }
 
     /**
      * Helper method for creating text buttons and adding them to the table container.
+     *
      * @param label Label for the text button
      * @return The text button just created. It is returned so an event listener can be added to the button.
      */
-    protected TextButton createButton(String label){
+    protected TextButton createButton(final String label) {
         TextButton button = cGameSkin.generateDefaultMenuButton(label);
         cTable.row().expandY();
         cTable.add(button);
         return button;
     }
 
-	@Override
-	public void setAsActiveScreen() {
-		// TODO Auto-generated method stub
-		cWorldRenderer.setActor(cTable);
-	}
+    @Override
+    protected String setPreviousScreenName() {
+        return "Home";
+    }
 }
