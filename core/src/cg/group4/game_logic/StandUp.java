@@ -1,9 +1,6 @@
 package cg.group4.game_logic;
 
 import cg.group4.container.Assets;
-import cg.group4.stroll.Stroll;
-import cg.group4.util.camera.GameSkin;
-import cg.group4.util.camera.WorldRenderer;
 import cg.group4.game_logic.stroll.Stroll;
 import cg.group4.util.sensors.SensorReader;
 import cg.group4.util.subscribe.Subject;

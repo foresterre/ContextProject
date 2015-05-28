@@ -5,7 +5,6 @@ import cg.group4.container.sound.MusicStorage;
 
 /**
  * Container class for all assets.
- * @author Martijn Gribnau
  */
 public class Assets {
 
@@ -30,8 +29,17 @@ public class Assets {
         cTextureStorage.initStore();
     }
 
+    /**
+     * MusicStorage getter.
+     * @return music storage.
+     */
     public MusicStorage getMusicStorage() {
         return cMusicStorage;
     }
+
+    /**
+     * TextureStorage getter.
+     * @return texture storage.
+     */
     public TextureStorage getTextureStorage() { return cTextureStorage; }
 }

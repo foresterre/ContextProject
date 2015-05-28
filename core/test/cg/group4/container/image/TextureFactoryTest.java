@@ -13,21 +13,37 @@ import static org.mockito.Mockito.*;
  */
 public class TextureFactoryTest extends TestCase {
 
+    /**
+     * TextureFactory mock.
+     */
     TextureFactory tf;
+
+    /**
+     * Texture mock.
+     */
     Texture tex;
 
+    /**
+     * Setup mocks.
+     */
     @Before
     public void setUp() throws Exception {
         tf = mock(TextureFactory.class);
         tex = mock(Texture.class);
     }
 
+    /**
+     * Tear down mocks.
+     */
     @After
     public void tearDown() throws Exception {
         tf = null;
         tex = null;
     }
 
+    /**
+     * Get wood menu texture test.
+     */
     @Test
     public void testGetWoodMenuTexture() throws Exception {
         when(tf.getWoodMenuTexture()).thenReturn(tex);
