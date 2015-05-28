@@ -1,5 +1,6 @@
 package cg.group4.container.music;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 
 /**
@@ -21,7 +22,7 @@ public class MusicFactory {
      * @return Music
      */
     public final Music getBackgroundMusic() {
-        return new BackgroundMusic().get();
+        return Gdx.audio.newMusic(MusicHandle.bgMusic.get());
     }
 
     /**
@@ -30,7 +31,7 @@ public class MusicFactory {
      * @return Music
      */
     public final Music getCompletedTaskMusic() {
-        return new CompletedTaskMusic().get();
+        return Gdx.audio.newMusic(MusicHandle.completedTaskMusic.get());
     }
 
 }

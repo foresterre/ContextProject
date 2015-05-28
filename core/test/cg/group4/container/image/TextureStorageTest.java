@@ -1,33 +1,39 @@
 package cg.group4.container.image;
 
+import cg.group4.GdxTestRunner;
+import com.badlogic.gdx.graphics.Texture;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.mockito.Mockito.*;
 
 /**
  * Tests for the texture storage.
+ * @see <a href=https://github.com/foresterre/ContextProject/issues/37>issue 37</a>
  */
+@RunWith(GdxTestRunner.class)
 public class TextureStorageTest {
 
     /**
      * TextureStorage (object).
      */
-    protected TextureStorage ts;
+    protected TextureStorage textureStorageMock;
 
     /**
-     * TextureStorage (mock object).
+     * Mock for a texture.
      */
-    protected TextureStorage tsMock;
+    protected Texture textureMock;
+
 
     /**
      * Setup TextureStorage's.
      */
     @Before
     public final void setUp() {
-        ts = new TextureStorage();
-        tsMock = mock(TextureStorage.class);
+        textureStorageMock = mock(TextureStorage.class);
+        textureMock = mock(Texture.class);
     }
 
     /**
@@ -35,8 +41,7 @@ public class TextureStorageTest {
      */
     @After
     public final void tearDown() {
-        ts = null;
-        tsMock = null;
+        textureStorageMock = null;
     }
 
     /**
@@ -45,8 +50,8 @@ public class TextureStorageTest {
      */
     @Test
     public final void testInitStore() {
-        tsMock.initStore();
-        verify(tsMock, times(1)).initStore();
+        textureStorageMock.initStore();
+        verify(textureStorageMock, times(1)).initStore();
     }
 
     /**
@@ -54,8 +59,10 @@ public class TextureStorageTest {
      */
     @Test
     public final void testGet() {
-        tsMock.get("WoodMenuTexture");
-        verify(tsMock, times(1)).get("WoodMenuTexture");
+        textureStorageMock.initStore();
+        when(textureStorageMock.get(TextureHandle.woodenSign.key())).thenReturn(textureMock);
+        textureStorageMock.get(TextureHandle.woodenSign.key());
+        verify(textureStorageMock, times(1)).get(TextureHandle.woodenSign.key());
 
     }
 }

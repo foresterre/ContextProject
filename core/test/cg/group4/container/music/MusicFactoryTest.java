@@ -1,26 +1,30 @@
 package cg.group4.container.music;
 
+import cg.group4.GdxTestRunner;
 import com.badlogic.gdx.audio.Music;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.mockito.Mockito.*;
 
 /**
  * Tests for the MusicFactory.
+ * @see <a href=https://github.com/foresterre/ContextProject/issues/37>issue 37</a>
  */
+@RunWith(GdxTestRunner.class)
 public class MusicFactoryTest {
 
     /**
      * Factory for the music.
      */
-    protected MusicFactory mf;
+    protected MusicFactory musicFactoryMock;
 
     /**
-     * Spy object for a Music object.
+     * Mock object for a Music object.
      */
-    protected Music mMock;
+    protected Music musicMock;
 
     /**
      * Sets up the test objects.
@@ -29,8 +33,8 @@ public class MusicFactoryTest {
      */
     @Before
     public final void setUp() throws Exception {
-        mf = spy(MusicFactory.class);
-        mMock = mock(Music.class);
+        musicFactoryMock = mock(MusicFactory.class);
+        musicMock = mock(Music.class);
     }
 
     /**
@@ -40,7 +44,8 @@ public class MusicFactoryTest {
      */
     @After
     public final void tearDown() throws Exception {
-        mf = null;
+        musicFactoryMock = null;
+        musicMock = null;
     }
 
     /**
@@ -49,11 +54,10 @@ public class MusicFactoryTest {
      * @throws Exception exception catch if any
      */
     @Test
-    public final void testGetBackgroundMusic() throws Exception {
-        when(mf.getBackgroundMusic()).thenReturn(mMock);
-
-        mf.getBackgroundMusic();
-        verify(mf, times(1)).getBackgroundMusic();
+    public void testGetBackgroundMusic() throws Exception {
+        when(musicFactoryMock.getBackgroundMusic()).thenReturn(musicMock);
+        musicFactoryMock.getBackgroundMusic();
+        verify(musicFactoryMock).getBackgroundMusic();
     }
 
     /**
@@ -63,9 +67,8 @@ public class MusicFactoryTest {
      */
     @Test
     public final void testGetCompletedTaskMusic() throws Exception {
-        when(mf.getBackgroundMusic()).thenReturn(mMock);
-
-        mf.getCompletedTaskMusic();
-        verify(mf, times(1)).getCompletedTaskMusic();
+        when(musicFactoryMock.getCompletedTaskMusic()).thenReturn(musicMock);
+        musicFactoryMock.getCompletedTaskMusic();
+        verify(musicFactoryMock).getCompletedTaskMusic();
     }
 }

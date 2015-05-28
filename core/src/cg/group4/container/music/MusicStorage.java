@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Storage for the different music objects used by the game.
  * @author Martijn Gribnau
  */
 public class MusicStorage {
@@ -16,11 +17,6 @@ public class MusicStorage {
     protected MusicFactory cMusicFactory;
 
     /**
-     * Factory for the tags of the used audo files.
-     */
-
-    protected MusicTagFactory cMusicTagFactory;
-    /**
      * Stores a Music object in the following map.
      * The reason for this is, that this way, not every Music object has to be recreated
      * each time the music is requested.
@@ -28,12 +24,12 @@ public class MusicStorage {
     protected Map<String, Music> cSoundMap;
 
     /**
-     *
+     * Creates a new map for storage of the loaded music files.
+     * Also creates a factory for the creation of the Music objects.
      */
     public MusicStorage() {
         cSoundMap = new HashMap<String, Music>();
         cMusicFactory = new MusicFactory();
-        cMusicTagFactory = new MusicTagFactory();
     }
 
     /**
@@ -41,9 +37,9 @@ public class MusicStorage {
      */
     public final void initStore() {
         // background music
-        cSoundMap.put(cMusicTagFactory.getBackgroundMusicTag(), cMusicFactory.getBackgroundMusic());
+        cSoundMap.put(MusicHandle.bgMusic.key(), cMusicFactory.getBackgroundMusic());
         // completed task music
-        cSoundMap.put(cMusicTagFactory.getCompletedTaskMusicTag(), cMusicFactory.getCompletedTaskMusic());
+        cSoundMap.put(MusicHandle.completedTaskMusic.key(), cMusicFactory.getCompletedTaskMusic());
     }
 
     /**

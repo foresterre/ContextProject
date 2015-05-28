@@ -9,8 +9,6 @@ import java.util.Map;
  * Data object for the reuse of texture objects.
  * Stores textures in a map.
  * If you are not re-using textures, you can also directly use a TextureFactory.
- *
- * @author Martijn Gribnau
  */
 public class TextureStorage {
 
@@ -19,11 +17,6 @@ public class TextureStorage {
      */
     protected TextureFactory cTextureFactory;
 
-    /**
-     * Factory for the tags of the used texture files.
-     */
-
-    protected TextureTagFactory cTextureTagFactory;
     /**
      * Stores a Texture object in the following map.
      * The reason for this is, that this way, not every Music object has to be recreated
@@ -37,7 +30,6 @@ public class TextureStorage {
     public TextureStorage() {
         cTextureMap = new HashMap<String, Texture>();
         cTextureFactory = new TextureFactory();
-        cTextureTagFactory = new TextureTagFactory();
     }
 
     /**
@@ -45,16 +37,17 @@ public class TextureStorage {
      */
     public final void initStore() {
         // wood menu image
-        cTextureMap.put(cTextureTagFactory.getWoodMenuTextureTag(), cTextureFactory.getWoodMenuTexture());
+        cTextureMap.put(TextureHandle.woodenSign.key(), cTextureFactory.getWoodMenuTexture());
     }
 
     /**
      * Returns the texture with the given tag.
      *
-     * @param tag The given tag.
+     * @param key The key of the texture which is defined as the String of the hashCode of the fileHandle
+     *            in the TextureHandle enum.
      * @return The texture.
      */
-    public final Texture get(final String tag) {
-        return cTextureMap.get(tag);
+    public final Texture get(final String key) {
+        return cTextureMap.get(key);
     }
 }
