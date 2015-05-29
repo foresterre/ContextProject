@@ -1,5 +1,6 @@
 package cg.group4.view.screen_mechanics;
 
+import cg.group4.container.image.TextureFactory;
 import cg.group4.container.image.TextureHandle;
 import cg.group4.container.image.TextureStorage;
 import cg.group4.game_logic.StandUp;
@@ -105,7 +106,8 @@ public class GameSkin extends Skin {
         buttonStyle.font = this.get("default_font", BitmapFont.class);
 
         TextureStorage textureStorage = StandUp.getInstance().getAssets().getTextureStorage();
-        Sprite sprite = new Sprite(textureStorage.get(TextureHandle.woodenSign.key()));
+        TextureFactory textureFactory = new TextureFactory();
+        Sprite sprite = new Sprite(textureFactory.getWoodMenuTexture());
         final float scalar = 0.42f;
         sprite.setSize(sprite.getWidth() * scalar * cUiScalar, sprite.getHeight() * scalar * cUiScalar);
 
