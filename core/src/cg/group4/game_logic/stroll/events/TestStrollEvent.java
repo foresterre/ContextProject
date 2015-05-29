@@ -1,5 +1,7 @@
 package cg.group4.game_logic.stroll.events;
 
+import cg.group4.container.music.MusicFactory;
+import cg.group4.container.music.MusicHandle;
 import cg.group4.game_logic.StandUp;
 import cg.group4.util.sensors.Accelerometer;
 import cg.group4.util.timer.Timer;
@@ -7,6 +9,7 @@ import cg.group4.util.timer.TimerStore;
 import cg.group4.view.screen.EventScreen;
 import cg.group4.view.screen_mechanics.ScreenLogic;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -41,7 +44,7 @@ public class TestStrollEvent extends StrollEvent {
     /**
      * Sound effect played when a task is completed.
      */
-    protected final Sound cCompletedTaskSound;
+    protected final Music cCompletedTaskSound;
     /**
      * The screen where the event is displayed.
      */
@@ -94,7 +97,7 @@ public class TestStrollEvent extends StrollEvent {
         super();
         cScreen = new EventScreen();
         cLabel = cScreen.getLabel();
-        cCompletedTaskSound = Gdx.audio.newSound(Gdx.files.internal("sounds/completedTask.wav"));
+        cCompletedTaskSound = StandUp.getInstance().getAssets().getMusicStorage().get(MusicHandle.completedTaskMusic.key());
         cTasksCompleted = 0;
         cPrevOperationNr = 0;
 
@@ -178,7 +181,7 @@ public class TestStrollEvent extends StrollEvent {
      */
     public final void taskCompleted() {
         this.cTasksCompleted++;
-        cCompletedTaskSound.play(1.0f);
+        cCompletedTaskSound.play();
         if (this.cTasksCompleted < MAX_TASKS) {
             //cDelayTaskTimer.reset();
             cPrevOperationNr = cOperationNr;
