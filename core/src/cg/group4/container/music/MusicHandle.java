@@ -22,14 +22,14 @@ public enum MusicHandle {
     /**
      * The music handle to be stored by each enum value.
      */
-    private final FileHandle musicHandle;
+    private final FileHandle cMusicHandle;
 
     /**
      * Stores a FileHandle for each enum value.
      * @param music The location of the music as a FileHandle object.
      */
     MusicHandle(final FileHandle music) {
-        musicHandle = music;
+        cMusicHandle = music;
     }
 
     /**
@@ -37,7 +37,7 @@ public enum MusicHandle {
      * @return file handle for the texture.
      */
     public FileHandle get() {
-        return musicHandle;
+        return cMusicHandle;
     }
 
     /**
@@ -47,7 +47,7 @@ public enum MusicHandle {
      * @return hashCode as string of the FileHandle
      */
     public String key() {
-        return Integer.toString(musicHandle.hashCode());
+        return Integer.toString(cMusicHandle.hashCode());
     }
 
 }

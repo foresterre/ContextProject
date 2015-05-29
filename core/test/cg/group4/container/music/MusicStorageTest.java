@@ -13,7 +13,6 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 /**
  * Tests for the MusicStorage.
- * @see <a href=https://github.com/foresterre/ContextProject/issues/37>issue 37</a>
  */
 @RunWith(GdxTestRunner.class)
 public class MusicStorageTest {
@@ -21,14 +20,14 @@ public class MusicStorageTest {
     /**
      * Spy for the music storage.
      */
-    protected MusicStorage musicStorageMock;
+    protected MusicStorage cMusicStorageSpy;
 
     /**
      * Setup for test objects.
      */
     @Before
     public final void setUp() {
-        musicStorageMock = spy(MusicStorage.class);
+        cMusicStorageSpy = spy(MusicStorage.class);
     }
 
     /**
@@ -36,7 +35,7 @@ public class MusicStorageTest {
      */
     @After
     public final void tearDown() {
-        musicStorageMock = null;
+        cMusicStorageSpy = null;
     }
 
     /**
@@ -46,10 +45,10 @@ public class MusicStorageTest {
     public final void testInitStore() {
         final int before = 0;
         final int after = 2;
-        assertTrue(musicStorageMock.cSoundMap.size() == before);
-        musicStorageMock.initStore();
-        verify(musicStorageMock, times(1)).initStore();
-        assertTrue(musicStorageMock.cSoundMap.size() == after);
+        assertTrue(cMusicStorageSpy.cSoundMap.size() == before);
+        cMusicStorageSpy.initStore();
+        verify(cMusicStorageSpy, times(1)).initStore();
+        assertTrue(cMusicStorageSpy.cSoundMap.size() == after);
     }
 
     /**

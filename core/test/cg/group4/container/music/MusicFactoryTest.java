@@ -11,7 +11,6 @@ import static org.mockito.Mockito.*;
 
 /**
  * Tests for the MusicFactory.
- * @see <a href=https://github.com/foresterre/ContextProject/issues/37>issue 37</a>
  */
 @RunWith(GdxTestRunner.class)
 public class MusicFactoryTest {
@@ -19,12 +18,12 @@ public class MusicFactoryTest {
     /**
      * Factory for the music.
      */
-    protected MusicFactory musicFactoryMock;
+    protected MusicFactory cMusicFactoryMock;
 
     /**
      * Mock object for a Music object.
      */
-    protected Music musicMock;
+    protected Music cMusicMock;
 
     /**
      * Sets up the test objects.
@@ -33,8 +32,8 @@ public class MusicFactoryTest {
      */
     @Before
     public final void setUp() throws Exception {
-        musicFactoryMock = mock(MusicFactory.class);
-        musicMock = mock(Music.class);
+        cMusicFactoryMock = mock(MusicFactory.class);
+        cMusicMock = mock(Music.class);
     }
 
     /**
@@ -44,8 +43,8 @@ public class MusicFactoryTest {
      */
     @After
     public final void tearDown() throws Exception {
-        musicFactoryMock = null;
-        musicMock = null;
+        cMusicFactoryMock = null;
+        cMusicMock = null;
     }
 
     /**
@@ -55,9 +54,9 @@ public class MusicFactoryTest {
      */
     @Test
     public final void testGetBackgroundMusic() throws Exception {
-        when(musicFactoryMock.getBackgroundMusic()).thenReturn(musicMock);
-        musicFactoryMock.getBackgroundMusic();
-        verify(musicFactoryMock).getBackgroundMusic();
+        when(cMusicFactoryMock.getBackgroundMusic()).thenReturn(cMusicMock);
+        cMusicFactoryMock.getBackgroundMusic();
+        verify(cMusicFactoryMock).getBackgroundMusic();
     }
 
     /**
@@ -67,8 +66,8 @@ public class MusicFactoryTest {
      */
     @Test
     public final void testGetCompletedTaskMusic() throws Exception {
-        when(musicFactoryMock.getCompletedTaskMusic()).thenReturn(musicMock);
-        musicFactoryMock.getCompletedTaskMusic();
-        verify(musicFactoryMock).getCompletedTaskMusic();
+        when(cMusicFactoryMock.getCompletedTaskMusic()).thenReturn(cMusicMock);
+        cMusicFactoryMock.getCompletedTaskMusic();
+        verify(cMusicFactoryMock).getCompletedTaskMusic();
     }
 }

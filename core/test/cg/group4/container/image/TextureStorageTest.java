@@ -11,7 +11,6 @@ import static org.mockito.Mockito.*;
 
 /**
  * Tests for the texture storage.
- * @see <a href=https://github.com/foresterre/ContextProject/issues/37>issue 37</a>
  */
 @RunWith(GdxTestRunner.class)
 public class TextureStorageTest {
@@ -19,12 +18,12 @@ public class TextureStorageTest {
     /**
      * TextureStorage (object).
      */
-    protected TextureStorage textureStorageMock;
+    protected TextureStorage cTextureStorageMock;
 
     /**
      * Mock for a texture.
      */
-    protected Texture textureMock;
+    protected Texture cTextureMock;
 
 
     /**
@@ -32,8 +31,8 @@ public class TextureStorageTest {
      */
     @Before
     public final void setUp() {
-        textureStorageMock = mock(TextureStorage.class);
-        textureMock = mock(Texture.class);
+        cTextureStorageMock = mock(TextureStorage.class);
+        cTextureMock = mock(Texture.class);
     }
 
     /**
@@ -41,7 +40,7 @@ public class TextureStorageTest {
      */
     @After
     public final void tearDown() {
-        textureStorageMock = null;
+        cTextureStorageMock = null;
     }
 
     /**
@@ -50,8 +49,8 @@ public class TextureStorageTest {
      */
     @Test
     public final void testInitStore() {
-        textureStorageMock.initStore();
-        verify(textureStorageMock, times(1)).initStore();
+        cTextureStorageMock.initStore();
+        verify(cTextureStorageMock, times(1)).initStore();
     }
 
     /**
@@ -59,10 +58,10 @@ public class TextureStorageTest {
      */
     @Test
     public final void testGet() {
-        textureStorageMock.initStore();
-        when(textureStorageMock.get(TextureHandle.woodenSign.key())).thenReturn(textureMock);
-        textureStorageMock.get(TextureHandle.woodenSign.key());
-        verify(textureStorageMock, times(1)).get(TextureHandle.woodenSign.key());
+        cTextureStorageMock.initStore();
+        when(cTextureStorageMock.get(TextureHandle.woodenSign.key())).thenReturn(cTextureMock);
+        cTextureStorageMock.get(TextureHandle.woodenSign.key());
+        verify(cTextureStorageMock, times(1)).get(TextureHandle.woodenSign.key());
 
     }
 }

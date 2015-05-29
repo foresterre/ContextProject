@@ -6,14 +6,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.internal.matchers.Any;
 
 import static org.mockito.Mockito.*;
 
 
 /**
  * Tests for the texture factory.
- * @see <a href=https://github.com/foresterre/ContextProject/issues/37>issue 37</a>
  */
 @RunWith(GdxTestRunner.class)
 public class TextureFactoryTest {
@@ -21,20 +19,20 @@ public class TextureFactoryTest {
     /**
      * TextureFactory mock.
      */
-    protected TextureFactory textureFactoryMock;
+    protected TextureFactory cTextureFactoryMock;
 
     /**
      * Texture mock.
      */
-    protected Texture textureMock;
+    protected Texture cTextureMock;
 
     /**
      * Setup mocks.
      */
     @Before
     public final void setUp() {
-        textureFactoryMock = mock(TextureFactory.class);
-        textureMock = mock(Texture.class);
+        cTextureFactoryMock = mock(TextureFactory.class);
+        cTextureMock = mock(Texture.class);
     }
 
     /**
@@ -42,8 +40,8 @@ public class TextureFactoryTest {
      */
     @After
     public final void tearDown() {
-        textureFactoryMock = null;
-        textureMock = null;
+        cTextureFactoryMock = null;
+        cTextureMock = null;
     }
 
     /**
@@ -51,8 +49,8 @@ public class TextureFactoryTest {
      */
     @Test
     public final void testGetWoodMenuTexture() {
-        when(textureFactoryMock.getWoodMenuTexture()).thenReturn(textureMock);
-        textureFactoryMock.getWoodMenuTexture();
-        verify(textureFactoryMock, times(1)).getWoodMenuTexture();
+        when(cTextureFactoryMock.getWoodMenuTexture()).thenReturn(cTextureMock);
+        cTextureFactoryMock.getWoodMenuTexture();
+        verify(cTextureFactoryMock, times(1)).getWoodMenuTexture();
     }
 }

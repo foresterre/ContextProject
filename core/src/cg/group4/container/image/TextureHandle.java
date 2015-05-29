@@ -17,14 +17,14 @@ public enum TextureHandle {
     /**
      * File handle for the values in this enum.
      */
-    private final FileHandle textureHandle;
+    private final FileHandle cTextureHandle;
 
     /**
      * Stores a FileHandle for each enum value.
      * @param fileHandle The location of the texture image as a FileHandle object.
      */
     TextureHandle(final FileHandle fileHandle) {
-        textureHandle = fileHandle;
+        cTextureHandle = fileHandle;
     }
 
     /**
@@ -32,7 +32,7 @@ public enum TextureHandle {
      * @return file handle for the texture.
      */
     public FileHandle get() {
-        return textureHandle;
+        return cTextureHandle;
     }
 
     /**
@@ -42,7 +42,7 @@ public enum TextureHandle {
      * @return hashCode as string of the FileHandle
      */
     public String key() {
-        return Integer.toString(textureHandle.hashCode());
+        return Integer.toString(cTextureHandle.hashCode());
     }
 
 }

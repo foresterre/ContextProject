@@ -12,7 +12,6 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Tests for the texture handle.
- * @see <a href=https://github.com/foresterre/ContextProject/issues/37>issue 37</a>
  */
 @RunWith(GdxTestRunner.class)
 public class TextureHandleTest {
@@ -20,14 +19,14 @@ public class TextureHandleTest {
     /**
      * Handle expected by the tests.
      */
-    private FileHandle expectedHandle;
+    private FileHandle cExpectedHandle;
 
     /**
      * Gets the handle for a sample texture file used for testing.
      */
     @Before
     public void setUp() {
-        expectedHandle = Gdx.files.internal("images/wooden_sign.png");
+        cExpectedHandle = Gdx.files.internal("images/wooden_sign.png");
     }
 
     /**
@@ -35,7 +34,7 @@ public class TextureHandleTest {
      */
     @After
     public void tearDown() {
-        expectedHandle = null;
+        cExpectedHandle = null;
     }
 
     /**
@@ -44,7 +43,7 @@ public class TextureHandleTest {
     @Test
     public void testGet() {
         FileHandle providedHandle = TextureHandle.woodenSign.get();
-        assertEquals(expectedHandle, providedHandle);
+        assertEquals(cExpectedHandle, providedHandle);
     }
 
     /**
@@ -52,7 +51,7 @@ public class TextureHandleTest {
      */
     @Test
     public void testKey() {
-        String expectedKey = Integer.toString(expectedHandle.hashCode());
+        String expectedKey = Integer.toString(cExpectedHandle.hashCode());
         String providedKey = TextureHandle.woodenSign.key();
         assertEquals(expectedKey, providedKey);
     }

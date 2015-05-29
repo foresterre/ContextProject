@@ -12,7 +12,6 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Tests for the music handle.
- * @see <a href=https://github.com/foresterre/ContextProject/issues/37>issue 37</a>
  */
 @RunWith(GdxTestRunner.class)
 public class MusicHandleTest {
@@ -20,14 +19,14 @@ public class MusicHandleTest {
     /**
      * Handle expected by the tests.
      */
-    private FileHandle expectedHandle;
+    private FileHandle cExpectedHandle;
 
     /**
      * Gets the handle for a sample music file used for testing.
      */
     @Before
     public final void setUp()  {
-        expectedHandle = Gdx.files.internal("music/Summer Day.mp3");
+        cExpectedHandle = Gdx.files.internal("music/Summer Day.mp3");
     }
 
     /**
@@ -35,7 +34,7 @@ public class MusicHandleTest {
      */
     @After
     public final void tearDown()  {
-        expectedHandle = null;
+        cExpectedHandle = null;
     }
 
     /**
@@ -44,7 +43,7 @@ public class MusicHandleTest {
     @Test
     public final void testGet()  {
         FileHandle providedHandle = MusicHandle.bgMusic.get();
-        assertEquals(expectedHandle, providedHandle);
+        assertEquals(cExpectedHandle, providedHandle);
     }
 
     /**
@@ -52,7 +51,7 @@ public class MusicHandleTest {
      */
     @Test
     public final void testKey()  {
-        String expectedKey = Integer.toString(expectedHandle.hashCode());
+        String expectedKey = Integer.toString(cExpectedHandle.hashCode());
         String providedKey = MusicHandle.bgMusic.key();
         assertEquals(expectedKey, providedKey);
     }
