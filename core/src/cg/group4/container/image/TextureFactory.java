@@ -19,7 +19,7 @@ public class TextureFactory {
      *
      * @return Texture texture
      */
-    public final Texture getWoodMenuTexture() {
+    public Texture getWoodMenuTexture() {
         return new Texture(TextureHandle.woodenSign.get());
     }
 }

@@ -31,7 +31,7 @@ public class MusicHandleTest {
     }
 
     /**
-     * Destroys the handle used for testing after a test is finished.
+     * Destroys the  handle used for testing after a test is finished.
      */
     @After
     public final void tearDown()  {

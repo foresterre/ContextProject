@@ -7,7 +7,6 @@ import java.util.Map;
 
 /**
  * Storage for the different music objects used by the game.
- * @author Martijn Gribnau
  */
 public class MusicStorage {
 

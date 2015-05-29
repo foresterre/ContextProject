@@ -35,7 +35,7 @@ public class TextureStorage {
     /**
      * Stores each texture in the map, for reuse.
      */
-    public final void initStore() {
+    public void initStore() {
         // wood menu image
         cTextureMap.put(TextureHandle.woodenSign.key(), cTextureFactory.getWoodMenuTexture());
     }
@@ -47,7 +47,7 @@ public class TextureStorage {
      *            in the TextureHandle enum.
      * @return The texture.
      */
-    public final Texture get(final String key) {
+    public Texture get(final String key) {
         return cTextureMap.get(key);
     }
 }

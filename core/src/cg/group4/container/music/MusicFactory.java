@@ -21,7 +21,7 @@ public class MusicFactory {
      *
      * @return Music
      */
-    public final Music getBackgroundMusic() {
+    public Music getBackgroundMusic() {
         return Gdx.audio.newMusic(MusicHandle.bgMusic.get());
     }
 
@@ -30,7 +30,7 @@ public class MusicFactory {
      *
      * @return Music
      */
-    public final Music getCompletedTaskMusic() {
+    public Music getCompletedTaskMusic() {
         return Gdx.audio.newMusic(MusicHandle.completedTaskMusic.get());
     }
 

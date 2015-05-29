@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.internal.matchers.Any;
 
 import static org.mockito.Mockito.*;
 
@@ -51,7 +52,6 @@ public class TextureFactoryTest {
     @Test
     public final void testGetWoodMenuTexture() {
         when(textureFactoryMock.getWoodMenuTexture()).thenReturn(textureMock);
-
         textureFactoryMock.getWoodMenuTexture();
         verify(textureFactoryMock, times(1)).getWoodMenuTexture();
     }

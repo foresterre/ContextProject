@@ -54,7 +54,7 @@ public class MusicFactoryTest {
      * @throws Exception exception catch if any
      */
     @Test
-    public void testGetBackgroundMusic() throws Exception {
+    public final void testGetBackgroundMusic() throws Exception {
         when(musicFactoryMock.getBackgroundMusic()).thenReturn(musicMock);
         musicFactoryMock.getBackgroundMusic();
         verify(musicFactoryMock).getBackgroundMusic();

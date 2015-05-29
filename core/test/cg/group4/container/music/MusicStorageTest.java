@@ -52,5 +52,13 @@ public class MusicStorageTest {
         assertTrue(musicStorageMock.cSoundMap.size() == after);
     }
 
+    /**
+     * Tests the getter of the music storage.
+     */
+    @Test
+    public final void testGet() {
+
+    }
+
 
 }
