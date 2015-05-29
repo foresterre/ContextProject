@@ -44,7 +44,7 @@ public class TestStrollEvent extends StrollEvent {
     /**
      * Sound effect played when a task is completed.
      */
-    protected final Music cCompletedTaskSound;
+    protected final Sound cCompletedTaskSound;
     /**
      * The screen where the event is displayed.
      */
@@ -97,7 +97,7 @@ public class TestStrollEvent extends StrollEvent {
         super();
         cScreen = new EventScreen();
         cLabel = cScreen.getLabel();
-        cCompletedTaskSound = StandUp.getInstance().getAssets().getMusicStorage().get(MusicHandle.completedTaskMusic.key());
+        cCompletedTaskSound = Gdx.audio.newSound(Gdx.files.internal("music/completedTask.wav"));
         cTasksCompleted = 0;
         cPrevOperationNr = 0;
 
@@ -181,7 +181,7 @@ public class TestStrollEvent extends StrollEvent {
      */
     public final void taskCompleted() {
         this.cTasksCompleted++;
-        cCompletedTaskSound.play();
+        cCompletedTaskSound.play(1.0f);
         if (this.cTasksCompleted < MAX_TASKS) {
             //cDelayTaskTimer.reset();
             cPrevOperationNr = cOperationNr;
