@@ -1,5 +1,6 @@
 package cg.group4.game_logic;
 
+import cg.group4.container.Assets;
 import cg.group4.game_logic.stroll.Stroll;
 import cg.group4.util.sensors.SensorReader;
 import cg.group4.util.subscribe.Subject;
@@ -38,6 +39,12 @@ public final class StandUp {
 
     /**
      * Subject for new stroll.
+     * Asset container.
+     */
+    protected Assets cAssets;
+
+    /**
+     * list of all the subscribed game mechanics.
      */
     protected Subject cNewStrollSubject;
 
@@ -53,6 +60,7 @@ public final class StandUp {
         cUpdateSubject = new Subject();
         cNewStrollSubject = new Subject();
         cSensorReader = new SensorReader();
+        cAssets = new Assets();
     }
 
     /**
@@ -100,6 +108,15 @@ public final class StandUp {
      */
     public void update() {
         cUpdateSubject.update(null);
+    }
+
+    /**
+     * Getter for Assets.
+     *
+     * @return cAssets
+     */
+    public Assets getAssets() {
+        return cAssets;
     }
 
     /**

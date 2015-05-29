@@ -1,8 +1,11 @@
 package cg.group4.view.screen_mechanics;
 
+import cg.group4.container.image.TextureFactory;
+import cg.group4.container.image.TextureHandle;
+import cg.group4.container.image.TextureStorage;
+import cg.group4.game_logic.StandUp;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -102,7 +105,9 @@ public class GameSkin extends Skin {
         buttonStyle.fontColor = Color.GREEN;
         buttonStyle.font = this.get("default_font", BitmapFont.class);
 
-        Sprite sprite = new Sprite(new Texture(Gdx.files.internal("images/wooden_sign.png")));
+        TextureStorage textureStorage = StandUp.getInstance().getAssets().getTextureStorage();
+        TextureFactory textureFactory = new TextureFactory();
+        Sprite sprite = new Sprite(textureFactory.getWoodMenuTexture());
         final float scalar = 0.42f;
         sprite.setSize(sprite.getWidth() * scalar * cUiScalar, sprite.getHeight() * scalar * cUiScalar);
 
