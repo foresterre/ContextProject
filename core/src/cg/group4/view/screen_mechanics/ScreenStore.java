@@ -1,5 +1,7 @@
 package cg.group4.view.screen_mechanics;
 
+import cg.group4.rewards.Collection;
+import cg.group4.view.screen.CollectiblesScreen;
 import cg.group4.view.screen.HomeScreen;
 import cg.group4.view.screen.SettingsScreen;
 
@@ -52,10 +54,14 @@ public final class ScreenStore {
     }
 
     /**
-     * Initializes the Home Screen and the Settings Screen, since those are highly likely to be opened.
+     * Initializes the Home Screen, Settings Screen and the Collection Screen,
+     * since those are highly likely to be opened.
+     * 
+     * @param collection Collection of the user.
      */
-    public void init() {
+    public void init(final Collection collection) {
         addScreen("Home", new HomeScreen());
+        addScreen("Collection", new CollectiblesScreen(collection));
         addScreen("Settings", new SettingsScreen());
     }
 
