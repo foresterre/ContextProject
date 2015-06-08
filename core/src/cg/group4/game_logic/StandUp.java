@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import cg.group4.game_logic.stroll.Stroll;
 import cg.group4.rewards.RewardGenerator;
 import cg.group4.rewards.collectibles.Collectible;
+import cg.group4.util.audio.AudioPlayer;
 import cg.group4.util.sensors.SensorReader;
 import cg.group4.util.subscribe.Subject;
 import cg.group4.util.timer.Timer;
 import cg.group4.util.timer.TimerStore;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 
 /**
  * Class which handles the game logic.
@@ -29,7 +31,12 @@ public final class StandUp {
     /**
      * Singleton of game logic handler.
      */
-    protected static StandUp INSTANCE = new StandUp();
+    protected static StandUp instance = new StandUp();
+
+    /**
+     * Background music to be played.
+     */
+    protected Music cBackgroundMusic;
 
     /**
      * Stroll logic.
@@ -64,6 +71,11 @@ public final class StandUp {
         cNewStrollSubject = new Subject();
         cSensorReader = new SensorReader();
         cGenerator = new RewardGenerator();
+
+        cBackgroundMusic =  Gdx.audio.newMusic(Gdx.files.internal("music/Summer Day.mp3"));
+        cBackgroundMusic.setLooping(true);
+        AudioPlayer.getInstance().setLastPlayed(cBackgroundMusic);
+        AudioPlayer.getInstance().playAudio(cBackgroundMusic);
     }
 
     /**
@@ -72,7 +84,7 @@ public final class StandUp {
      * @return INSTANCE
      */
     public static StandUp getInstance() {
-        return INSTANCE;
+        return instance;
     }
 
     /**
@@ -143,5 +155,9 @@ public final class StandUp {
      */
     public SensorReader getSensorReader() {
         return cSensorReader;
+    }
+
+    public Music getBackGroundMusic() {
+        return cBackgroundMusic;
     }
 }
