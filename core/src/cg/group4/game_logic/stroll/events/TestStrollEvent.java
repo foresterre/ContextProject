@@ -28,12 +28,7 @@ public class TestStrollEvent extends StrollEvent {
      */
     protected static final int MOVE_LEFT = 0, MOVE_RIGHT = 1, MOVE_DOWN = 2, MOVE_UP = 3,
             MOVE_AWAY = 4, MOVE_TOWARDS = 5;
-   
-    /**
-     * Sound effect played when a task is completed.
-     */
-    protected final Sound cCompletedTaskSound;
-    
+
     /**
      * The string values belonging to each direction.
      */
@@ -81,7 +76,6 @@ public class TestStrollEvent extends StrollEvent {
      */
     public TestStrollEvent() {
         super();
-        cCompletedTaskSound = Gdx.audio.newSound(Gdx.files.internal("sounds/completedTask.wav"));
         cTasksCompleted = 0;
         cPrevOperationNr = -1;
         cRandom = new Random();
@@ -126,7 +120,7 @@ public class TestStrollEvent extends StrollEvent {
     public void taskCompleted() {
         this.cTasksCompleted++;
         Gdx.app.log(getClass().getSimpleName(), "Task " + cOperationNr + " succeeded.");
-        AudioPlayer.getInstance().playAudio(cCompletedTaskSound);
+        AudioPlayer.getInstance().playTaskCompleted();
         cLabelSubject.update("Good work!");
         cDelayInputTimer.reset();
 
@@ -142,6 +136,7 @@ public class TestStrollEvent extends StrollEvent {
      * Clears the current event.
      */
     public void clearEvent() {
+        AudioPlayer.getInstance().playEventFinished();
         superDispose();
         TimerStore.getInstance().removeTimer(cDelayInputTimer);
     }

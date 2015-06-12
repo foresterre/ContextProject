@@ -1,5 +1,6 @@
 package cg.group4.game_logic.stroll.events.fishevent;
 
+import cg.group4.util.audio.AudioPlayer;
 import cg.group4.util.timer.Timer;
 import cg.group4.util.timer.TimerStore;
 import com.badlogic.gdx.math.Vector3;
@@ -46,6 +47,7 @@ public class WaitState implements FishEventState {
         cFishTimer.getStopSubject().addObserver(new Observer() {
             @Override
             public void update(final Observable o, final Object arg) {
+                playStateCompletionSound();
                 cEvent.cState = new ReelInState(cEvent);
                 cFishTimer.dispose();
             }
@@ -65,5 +67,10 @@ public class WaitState implements FishEventState {
         if (pythagorean > DELTA) {
             cFishTimer.reset();
         }
+    }
+
+    @Override
+    public void playStateCompletionSound() {
+        AudioPlayer.getInstance().playTaskCompleted();
     }
 }

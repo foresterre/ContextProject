@@ -1,5 +1,6 @@
 package cg.group4.game_logic.stroll.events.fishevent;
 
+import cg.group4.util.audio.AudioPlayer;
 import com.badlogic.gdx.math.Vector3;
 
 /**
@@ -35,7 +36,13 @@ public class CastForwardState implements FishEventState {
     public final void processInput(final Vector3 input) {
 
         if (input.z > DELTA) {
+            playStateCompletionSound();
             cEvent.cState = new WaitState(cEvent);
         }
+    }
+
+    @Override
+    public void playStateCompletionSound() {
+        AudioPlayer.getInstance().playTaskCompleted();
     }
 }

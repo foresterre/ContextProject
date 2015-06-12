@@ -41,6 +41,21 @@ public class AudioPlayer {
     protected Music cLastPlayed;
 
     /**
+     * The music that is last played.
+     */
+    protected Sound cEventStartedSound;
+
+    /**
+     * The music that is last played.
+     */
+    protected Sound cTaskCompletedSound;
+
+    /**
+     * The music that is last played.
+     */
+    protected Sound cEventCompletedSound;
+
+    /**
      * Constructor, initialises the subject and fetches all the data needed from the Preferences.
      */
     public AudioPlayer() {
@@ -48,6 +63,9 @@ public class AudioPlayer {
         cPreferences = Gdx.app.getPreferences("AUDIO");
         cAudioEnabled = cPreferences.getBoolean("ENABLED", true);
         cDefaultMusic = Gdx.audio.newMusic(Gdx.files.internal("music/Summer Day.mp3"));
+        cEventStartedSound = Gdx.audio.newSound(Gdx.files.internal("sounds/eventOccured.mp3"));
+        cTaskCompletedSound = Gdx.audio.newSound(Gdx.files.internal("sounds/completedTask.wav"));
+        cEventCompletedSound = Gdx.audio.newSound(Gdx.files.internal("sounds/eventCompleted.mp3"));
 //        cDefaultMusic = Assets.getInstance().getMusic("music/Summer Day.mp3");
         cDefaultMusic.setLooping(true);
         setLastPlayed(cDefaultMusic);
@@ -135,5 +153,17 @@ public class AudioPlayer {
         if(cAudioEnabled){
             sound.play();
         }
+    }
+
+    public final void playEventStarted() {
+        playAudio(cEventStartedSound);
+    }
+
+    public final void playEventFinished() {
+        playAudio(cEventCompletedSound);
+    }
+
+    public final void playTaskCompleted() {
+        playAudio(cTaskCompletedSound);
     }
 }
