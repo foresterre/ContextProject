@@ -1,17 +1,10 @@
 package cg.group4.server;
 
-import cg.group4.server.host.LocalHost;
-import cg.group4.server.host.UnknownHost;
-import cg.group4.util.StaticsCaller;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.net.UnknownHostException;
-
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
+
 
 /**
  * @author Jurgen van Schagen
