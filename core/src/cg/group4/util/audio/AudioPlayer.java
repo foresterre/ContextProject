@@ -1,12 +1,14 @@
 package cg.group4.util.audio;
 
 import cg.group4.data_structures.subscribe.Subject;
-import cg.group4.view.screen_mechanics.Assets;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
+/**
+ * Class that takes care of all audio that needs to be played.
+ */
 public class AudioPlayer {
 
     /**
@@ -155,14 +157,23 @@ public class AudioPlayer {
         }
     }
 
+    /**
+     * Plays the sound that needs to be played when an event is started.
+     */
     public final void playEventStarted() {
         playAudio(cEventStartedSound);
     }
 
+    /**
+     * Plays the sounds that needs to be played when an event is finished.
+     */
     public final void playEventFinished() {
         playAudio(cEventCompletedSound);
     }
 
+    /**
+     * Plays the sound that needs to be played when a task in an event is completed.
+     */
     public final void playTaskCompleted() {
         playAudio(cTaskCompletedSound);
     }
