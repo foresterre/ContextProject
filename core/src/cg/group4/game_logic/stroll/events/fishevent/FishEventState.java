@@ -14,5 +14,4 @@ public interface FishEventState {
      */
     void processInput(Vector3 input);
 
-    void playStateCompletionSound();
 }

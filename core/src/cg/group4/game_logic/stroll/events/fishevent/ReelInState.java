@@ -35,13 +35,8 @@ public class ReelInState implements FishEventState {
      */
     public final void processInput(final Vector3 input) {
         if (input.z < DELTA) {
-            playStateCompletionSound();
+            AudioPlayer.getInstance().playEventFinished();
             cEvent.eventCompleted();
         }
-    }
-
-    @Override
-    public void playStateCompletionSound() {
-        AudioPlayer.getInstance().playEventFinished();
     }
 }

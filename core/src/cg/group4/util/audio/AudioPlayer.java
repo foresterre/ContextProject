@@ -1,6 +1,7 @@
 package cg.group4.util.audio;
 
 import cg.group4.data_structures.subscribe.Subject;
+import cg.group4.view.screen_mechanics.Assets;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
@@ -65,10 +66,9 @@ public class AudioPlayer {
         cPreferences = Gdx.app.getPreferences("AUDIO");
         cAudioEnabled = cPreferences.getBoolean("ENABLED", true);
         cDefaultMusic = Gdx.audio.newMusic(Gdx.files.internal("music/Summer Day.mp3"));
-        cEventStartedSound = Gdx.audio.newSound(Gdx.files.internal("sounds/eventOccured.mp3"));
-        cTaskCompletedSound = Gdx.audio.newSound(Gdx.files.internal("sounds/completedTask.wav"));
-        cEventCompletedSound = Gdx.audio.newSound(Gdx.files.internal("sounds/eventCompleted.mp3"));
-//        cDefaultMusic = Assets.getInstance().getMusic("music/Summer Day.mp3");
+        cEventStartedSound = Assets.getInstance().getSound("sounds/eventOccured.mp3");
+        cTaskCompletedSound = Assets.getInstance().getSound("sounds/completedTask.wav");
+        cEventCompletedSound = Assets.getInstance().getSound("sounds/eventCompleted.mp3");
         cDefaultMusic.setLooping(true);
         setLastPlayed(cDefaultMusic);
         playAudio(cDefaultMusic);

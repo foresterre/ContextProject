@@ -48,7 +48,7 @@ public class Assets extends AssetManager {
         loadMusic("music/Summer Day.mp3");
         loadSound("sounds/completedTask.wav");
         loadSound("sounds/eventOccured.mp3");
-
+        loadSound("sounds/eventCompleted.mp3");
     }
 
     /**

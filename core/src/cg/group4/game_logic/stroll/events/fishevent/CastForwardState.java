@@ -36,13 +36,8 @@ public class CastForwardState implements FishEventState {
     public final void processInput(final Vector3 input) {
 
         if (input.z > DELTA) {
-            playStateCompletionSound();
+            AudioPlayer.getInstance().playTaskCompleted();
             cEvent.cState = new WaitState(cEvent);
         }
-    }
-
-    @Override
-    public void playStateCompletionSound() {
-        AudioPlayer.getInstance().playTaskCompleted();
     }
 }

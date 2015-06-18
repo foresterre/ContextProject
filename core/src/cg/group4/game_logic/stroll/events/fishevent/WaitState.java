@@ -47,7 +47,7 @@ public class WaitState implements FishEventState {
         cFishTimer.getStopSubject().addObserver(new Observer() {
             @Override
             public void update(final Observable o, final Object arg) {
-                playStateCompletionSound();
+                AudioPlayer.getInstance().playTaskCompleted();
                 cEvent.cState = new ReelInState(cEvent);
                 cFishTimer.dispose();
             }
@@ -67,10 +67,5 @@ public class WaitState implements FishEventState {
         if (pythagorean > DELTA) {
             cFishTimer.reset();
         }
-    }
-
-    @Override
-    public void playStateCompletionSound() {
-        AudioPlayer.getInstance().playTaskCompleted();
     }
 }
