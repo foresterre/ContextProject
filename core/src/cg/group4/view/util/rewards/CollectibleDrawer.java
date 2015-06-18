@@ -14,17 +14,29 @@ import com.badlogic.gdx.graphics.Texture;
 public class CollectibleDrawer {
 
     /**
+     * The color to replace.
+     */
+    protected static final float cReplaceColor = 125f;
+    /**
+     * Highest value an RGB can be.
+     */
+    protected static final int cMaxRBGInt = 255;
+    /**
      * R, G and B value of the replacement colour.
      */
-    protected final static float cReplaceColourComponent = 120f / 255f;
+    protected static final float cReplaceColourComponent = cReplaceColor / cMaxRBGInt;
+    /**
+     * Alpha value of the new colour.
+     */
+    protected static final float cAlpha = 1f;
     /**
      * Colour in the image that needs to be replaced.
      */
-    protected final static Color cReplacementColour = new Color(
+    protected static Color cReplacementColour = new Color(
             cReplaceColourComponent,
             cReplaceColourComponent,
             cReplaceColourComponent,
-            1f);
+            cAlpha);
 
     /**
      * Returns an image of the given collectible.
@@ -36,7 +48,7 @@ public class CollectibleDrawer {
         Pixmap pixImage = new Pixmap(Gdx.files.internal(c.getImagePath()));
         pixImage.setColor(RewardUtil.generateColor(c.getHue()));
         replaceColours(pixImage);
-
+        
         return new Texture(pixImage);
     }
 
@@ -47,10 +59,10 @@ public class CollectibleDrawer {
      * @param pix Pixmap containing the image that needs colour replacement.
      */
     protected static void replaceColours(final Pixmap pix) {
-
+    	
         for (int y = 0; y < pix.getHeight(); y++) {
             for (int x = 0; x < pix.getWidth(); x++) {
-
+            	
                 Color currentColour = new Color(pix.getPixel(x, y));
 
                 if (currentColour.equals(cReplacementColour)) {

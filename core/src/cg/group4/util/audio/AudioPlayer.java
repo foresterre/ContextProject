@@ -121,13 +121,13 @@ public class AudioPlayer {
     protected final void afterChange() {
         cAudioChangedSubject.update();
 
-        if(!cAudioEnabled){
+        if (!cAudioEnabled) {
             cLastPlayed.stop();
         } else {
             AudioPlayer.getInstance().playAudio(cDefaultMusic);
         }
 
-        cPreferences.putBoolean("ENABLED",cAudioEnabled);
+        cPreferences.putBoolean("ENABLED", cAudioEnabled);
         cPreferences.flush();
     }
 
@@ -136,12 +136,12 @@ public class AudioPlayer {
      * @param music The music file to be played.
      */
     public final void playAudio(Music music) {
-        if (cAudioEnabled){
+        if (cAudioEnabled) {
             if (cLastPlayed.isPlaying()) {
                 cLastPlayed.stop();
             }
             music.play();
-            if(!music.equals(cLastPlayed)){
+            if (!music.equals(cLastPlayed)) {
                 cLastPlayed = music;
             }
         }
@@ -152,7 +152,7 @@ public class AudioPlayer {
      * @param sound The sound file to be played
      */
     public final void playAudio(Sound sound) {
-        if(cAudioEnabled){
+        if (cAudioEnabled) {
             sound.play();
         }
     }

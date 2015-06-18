@@ -65,14 +65,7 @@ public class FishingStrollEvent extends StrollEvent {
 
     @Override
     protected void clearEvent() {
-        superDispose();
-    }
-
-    /**
-     * Method that calls super.dispose() to make it more testable.
-     */
-    public void superDispose() {
-        super.dispose();
+        
     }
 
     @Override
@@ -87,6 +80,6 @@ public class FishingStrollEvent extends StrollEvent {
      * @param text The text of the label.
      */
     public void setText(final String text) {
-        cLabelSubject.update(text);
+        cDataSubject.update(text);
     }
 }
