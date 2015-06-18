@@ -66,23 +66,6 @@ public class UnConnected implements Connection {
     }
 
     /**
-     *
-     * @param ip
-     * @param port
-     */
-    public void aquariumConnect(final String ip, final int port) {
-        try {
-            LOGGER.info("Trying to connect to the remote server (aquarium)");
-            final Connection connection = new RemoteConnection(ip, port);
-            Client.getRemoteInstance().setConnection(connection);
-            cConnecting = false;
-            System.out.println("REMOTE INSTANCE: " + Client.getRemoteInstance().toString());
-        } catch (IOException e) {
-            LOGGER.info("Connection failed!");
-        }
-    }
-
-    /**
      * Connects to a remote server. Connection is done in a separate Thread as not to block the game.
      * @param ip The IP to connect to.
      * @param port The port to connect to.
@@ -95,13 +78,11 @@ public class UnConnected implements Connection {
                 try {
                     LOGGER.info("Trying to connect to the remote server");
                     final Connection connection = new RemoteConnection(ip, port);
-                    System.out.println("REMOTE INSTANCE: " + Client.getRemoteInstance());
                     Client.getRemoteInstance().addPostRunnables(new Runnable() {
                         @Override
                         public void run() {
                             Client.getRemoteInstance().setConnection(connection);
                             cConnecting = false;
-                            System.out.println("REMOTE INSTANCE: " + Client.getRemoteInstance());
                         }
                     });
 

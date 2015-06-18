@@ -145,11 +145,6 @@ public final class Client {
         cConnection.connect(ip, port);
     }
 
-    public void connectFromAquarium(final String ip, final int port) {
-        ((UnConnected)cConnection).aquariumConnect(ip, port);
-    }
-
-
     /**
      * Sets the connection to the new connection.
      * @param connection The connection that needs to be set.
