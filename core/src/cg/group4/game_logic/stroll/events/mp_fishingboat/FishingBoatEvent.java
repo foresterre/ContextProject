@@ -7,19 +7,13 @@ import cg.group4.game_logic.stroll.events.multiplayer_event.Host;
 import cg.group4.util.sensor.Accelerometer;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Defaults for both the client and the host part of the CraneFishing MultiPlayer Event.
  */
 public abstract class FishingBoatEvent extends StrollEvent {
-    /**
-     * Lowers the noise threshold to make it less 'snappy' to the X and Y axis.
-     */
-    protected final float cNoiseThreshold = 0.5f;
-    /**
-     * The reward received when completing the event.
-     */
-    protected final int cReward = 30;
     /**
      * Connection with the other client.
      */
@@ -35,7 +29,24 @@ public abstract class FishingBoatEvent extends StrollEvent {
     /**
      * ArrayList to avoid concurrent modification exception when deleting fish (when caught).
      */
-    protected ArrayList<Integer> cToRemove = new ArrayList<Integer>();
+    protected ArrayList<Integer> cToRemove = new ArrayList<>();
+    /**
+     * Lowers the noise threshold to make it less 'snappy' to the X and Y axis.
+     */
+    protected final float cNoiseThreshold = 0.5f;
+    /**
+     * The reward received when completing the event.
+     */
+    protected final int cReward = 30;
+    /**
+     * Observer that disposes the event when disconnected from the other client.
+     */
+    protected Observer cDisconnectObserver = new Observer(){
+        @Override
+        public void update(Observable o, Object arg) {
+            disconnect();
+        }
+    };
 
     /**
      * Construct a new CraneFishingEvent.
@@ -45,12 +56,32 @@ public abstract class FishingBoatEvent extends StrollEvent {
     public FishingBoatEvent(Host otherClient) {
         super();
         cOtherClient = otherClient;
+        cOtherClient.getcDisconnectSubject().addObserver(cDisconnectObserver);
         cAccelerometer = new Accelerometer(StandUp.getInstance().getSensorReader());
         cAccelerometer.filterGravity(false);
         cAccelerometer.setNoiseThreshold(cNoiseThreshold);
         cAccelerometer.setFilterPerAxis(true);
 
         cFishingBoatEventData = new FishingBoatEventData();
+    }
+
+    @Override
+    public int getReward() {
+        return cReward;
+    }
+
+    @Override
+    protected void clearEvent() {
+        super.dispose();
+        cOtherClient.dispose();
+    }
+
+    /**
+     * Closes down the event when connection to the other party is lost.
+     */
+    protected void disconnect() {
+        super.dispose(false);
+        cOtherClient.dispose();
     }
 
     /**
@@ -66,17 +97,6 @@ public abstract class FishingBoatEvent extends StrollEvent {
         if (cFishingBoatEventData.getcSmallFishCoordinates().size() == 0) {
             clearEvent();
         }
-    }
-
-    @Override
-    protected void clearEvent() {
-        super.dispose();
-        cOtherClient.dispose();
-    }
-
-    @Override
-    public int getReward() {
-        return cReward;
     }
 
 }

@@ -1,5 +1,12 @@
 package cg.group4.view.screen_mechanics;
 
+import cg.group4.data_structures.subscribe.Subject;
+import cg.group4.view.screen.EventScreen;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -73,6 +80,10 @@ public class WorldRenderer extends InputAdapter implements Screen {
      * Defines if the application is in 'landscape' or in 'portrait'.
      */
     protected boolean cIsLandscape;
+    /**
+     * Subject that notifies when back button is clicked to the event screen.
+     */
+    protected Subject cEventScreenNotifier = new Subject();
 
     /**
      * All assets are stored here.
@@ -263,12 +274,22 @@ public class WorldRenderer extends InputAdapter implements Screen {
         cInputMultiplexer.addProcessor(cStage);
     }
 
+    /**
+     * The Back button click notifier to the event screen.
+     * @return The subject to subscribe to.
+     */
+    public Subject getcEventScreenNotifier() {
+        return cEventScreenNotifier;
+    }
+
     @Override
     public final boolean keyDown(final int keycode) {
         if (keycode == Input.Keys.BACK || keycode == Input.Keys.F1) {
             String previousScreenName = cScreen.getPreviousScreenName();
             if (previousScreenName == null) {
                 Gdx.app.exit();
+            } else if (cScreen instanceof EventScreen) {
+                cEventScreenNotifier.update();
             } else {
                 cScreenStore.setScreen(previousScreenName);
             }

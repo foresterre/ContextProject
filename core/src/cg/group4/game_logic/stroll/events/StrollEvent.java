@@ -4,6 +4,7 @@ import cg.group4.data_structures.subscribe.Subject;
 import cg.group4.game_logic.StandUp;
 import cg.group4.util.timer.Timer;
 import cg.group4.util.timer.TimerStore;
+import cg.group4.view.screen_mechanics.ScreenStore;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Disposable;
 
@@ -36,6 +37,15 @@ public abstract class StrollEvent implements Disposable, Observer {
      * Subject to detect event changes.
      */
     protected Subject cDataSubject;
+    /**
+     * When the back button is clicked, the event has to be cleared.
+     */
+    protected Observer cBackButtonClickObserver = new Observer() {
+        @Override
+        public void update(Observable o, Object arg) {
+            dispose(false);
+        }
+    };
 
     /**
      * Constructor, creates a new stroll event.
@@ -49,6 +59,7 @@ public abstract class StrollEvent implements Disposable, Observer {
         cEventTimer = TimerStore.getInstance().getTimer(Timer.Global.EVENT.name());
         cEventTimer.getStopSubject().addObserver(cEventStopObserver);
         cEventTimer.reset();
+        ScreenStore.getInstance().getWorldRenderer().getcEventScreenNotifier().addObserver(cBackButtonClickObserver);
     }
 
     /**
@@ -71,9 +82,16 @@ public abstract class StrollEvent implements Disposable, Observer {
     }
 
     /**
-     * Method that gets called to dispose of the event.
+     * Calls dispose method with eventCompleted true
      */
     public final void dispose() {
+        dispose(true);
+    }
+
+    /**
+     * Method that gets called to dispose of the event.
+     */
+    public final void dispose(boolean eventCompleted) {
         StandUp.getInstance().getUpdateSubject().deleteObserver(this);
         Gdx.app.log(this.getClass().getSimpleName(), "Event completed!");
         cEventTimer.getStopSubject().deleteObserver(cEventStopObserver);

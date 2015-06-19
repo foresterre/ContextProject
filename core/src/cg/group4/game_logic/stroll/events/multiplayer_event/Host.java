@@ -1,9 +1,20 @@
 package cg.group4.game_logic.stroll.events.multiplayer_event;
 
+import cg.group4.data_structures.subscribe.Subject;
 import com.badlogic.gdx.Gdx;
 
-import java.io.*;
-import java.net.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.SocketException;
 
 /**
  * A host can either be a Client or Host.
@@ -49,12 +60,15 @@ public abstract class Host {
      * Limit the sending of data to 30 messages per second.
      */
     protected int cMessagePerSecond = 33;
+    /**
+     * Notifies listeners when disconnected with other client.
+     */
+    protected Subject cDisconnectSubject = new Subject();
 
     /**
      * Creates a new Host.
      */
-    public Host() {
-    }
+    public Host() { }
 
     /**
      * Connects the host to the other party.
@@ -86,7 +100,6 @@ public abstract class Host {
 
     /**
      * Sends an Object using UDP.
-     *
      * @param object object to send.
      */
     public void sendUDP(final Serializable object) {
@@ -97,6 +110,8 @@ public abstract class Host {
                 byte[] data = outputStream.toByteArray();
                 DatagramPacket sendPacket = new DatagramPacket(data, data.length, cOtherClient, cSocket.getPort());
                 cDatagramSocket.send(sendPacket);
+            } catch(SocketException e) {
+                disconnect();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -120,13 +135,14 @@ public abstract class Host {
                         DatagramPacket incomingPacket = new DatagramPacket(cIncomingData, cIncomingData.length);
                         cDatagramSocket.receive(incomingPacket);
                         data = incomingPacket.getData();
+                    } catch (SocketException e) {
+                        disconnect();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
 
                     try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(data);
                          ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream)) {
-
                         final Object object = objectInputStream.readObject();
                         handler.handleMessage(object);
                     } catch (ClassNotFoundException e) {
@@ -159,8 +175,7 @@ public abstract class Host {
                 cOutputStream.writeUnshared(object);
                 cOutputStream.flush();
             } catch (SocketException e) {
-                e.printStackTrace();
-                cIsAlive = false;
+                disconnect();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -186,12 +201,8 @@ public abstract class Host {
                                 handler.handleMessage(object);
                             }
                         });
-                    } catch (EOFException e) {
-                        e.printStackTrace();
-                        cIsAlive = false;
-                    } catch (SocketException e) {
-                        e.printStackTrace();
-                        cIsAlive = false;
+                    } catch (EOFException | SocketException e) {
+                        disconnect();
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
@@ -204,6 +215,20 @@ public abstract class Host {
         thread.start();
     }
 
+    public Subject getcDisconnectSubject() {
+        return cDisconnectSubject;
+    }
+
+    public void disconnect() {
+        cIsAlive = false;
+        Gdx.app.postRunnable(new Runnable() {
+            @Override
+            public void run() {
+                cDisconnectSubject.update();
+            }
+        });
+    }
+
     /**
      * Disposes the host connection.
      */
@@ -211,9 +236,9 @@ public abstract class Host {
         cIsAlive = false;
         cDatagramSocket.close();
         try {
-            cSocket.close();
             cOutputStream.close();
             cInputStream.close();
+            cSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
