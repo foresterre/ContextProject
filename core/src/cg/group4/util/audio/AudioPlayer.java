@@ -148,6 +148,13 @@ public class AudioPlayer {
     }
 
     /**
+     * Plays the sound that needs to be played when an event is started.
+     */
+    public final void playEventStarted() {
+        playAudio(cEventStartedSound);
+    }
+
+    /**
      * Plays a sound file using the AudioPlayer.
      * @param sound The sound file to be played
      */
@@ -155,13 +162,6 @@ public class AudioPlayer {
         if (cAudioEnabled) {
             sound.play();
         }
-    }
-
-    /**
-     * Plays the sound that needs to be played when an event is started.
-     */
-    public final void playEventStarted() {
-        playAudio(cEventStartedSound);
     }
 
     /**

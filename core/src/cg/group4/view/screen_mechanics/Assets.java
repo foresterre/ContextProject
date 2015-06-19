@@ -57,6 +57,14 @@ public class Assets extends AssetManager {
     }
 
     /**
+     * Method that loads the Sound found at the given location.
+     * @param file The location where the sound can be found.
+     */
+    public void loadSound(final String file) {
+        load(file, Sound.class);
+    }
+
+    /**
      * Getter for the Singleton instance.
      *
      * @return The Assets instance.
@@ -95,13 +103,8 @@ public class Assets extends AssetManager {
     }
 
     /**
-     * Method that loads the Sound found at the given location.
-     * @param file The location where the sound can be found.
-     */
-    public void loadSound(final String file) { load(file, Sound.class); }
-
-    /**
      * Method that returns the Sound that has been loaded.
+     *
      * @param file The location of the Music.
      * @return A Sound instance belonging to that file.
      */

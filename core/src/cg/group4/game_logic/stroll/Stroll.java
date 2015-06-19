@@ -205,6 +205,20 @@ public class Stroll implements Observer {
         });
     }
 
+    protected void generatePossibleMultiplayerEvent(int event, Host host) {
+        cEventGoing = true;
+        switch (event) {
+            default:
+                if (host.isHost()) {
+                    cEvent = new FishingBoatHost(host);
+                } else {
+                    cEvent = new FishingBoatClient(host);
+                }
+                break;
+        }
+        cNewEventSubject.update(cEvent);
+    }
+
     /**
      * Joins a MultiPlayer game.
      * @param code The code to find the host.
@@ -237,15 +251,9 @@ public class Stroll implements Observer {
         };
     }
 
-    @Override
-    public final void update(final Observable o, final Object arg) {
-        if (!cEventGoing) {
-            generatePossibleEvent();
-        }
-    }
-
     /**
      * Creates a MultiPlayer Client.
+     *
      * @param ip The IP to connect to.
      */
     protected void createMultiPlayerClient(final String ip) {
@@ -271,6 +279,13 @@ public class Stroll implements Observer {
         }).start();
     }
 
+    @Override
+    public final void update(final Observable o, final Object arg) {
+        if (!cEventGoing) {
+            generatePossibleEvent();
+        }
+    }
+
     /**
      * Handles completion of an event.
      *
@@ -282,40 +297,6 @@ public class Stroll implements Observer {
         cRewards.add(rewards);
 
         cancelEvent();
-    }
-
-    /**
-     * Generate an event on a certain requirement (e.g. a random r: float < 0.1).
-     */
-    protected void generatePossibleEvent() {
-        Random rng = new Random();
-        if (rng.nextDouble() < cEventThreshold) {
-            cEventGoing = true;
-            switch (rng.nextInt(cNumberOfSinglePlayerEvents)) {
-                case (0):
-                    cEvent = new FishingStrollEvent();
-                    break;
-                default:
-                    cEvent = new FollowTheFishEvent();
-                    break;
-            }
-            AudioPlayer.getInstance().playEventStarted();
-            cNewEventSubject.update(cEvent);
-        }
-    }
-
-    protected void generatePossibleMultiplayerEvent(int event, Host host) {
-        cEventGoing = true;
-        switch (event) {
-            default:
-                if (host.isHost()) {
-                    cEvent = new FishingBoatHost(host);
-                } else {
-                    cEvent = new FishingBoatClient(host);
-                }
-                break;
-        }
-        cNewEventSubject.update(cEvent);
     }
 
     /**
@@ -364,6 +345,24 @@ public class Stroll implements Observer {
      */
     public final Subject getEndStrollSubject() {
         return cEndStrollSubject;
+    }    /**
+     * Generate an event on a certain requirement (e.g. a random r: float < 0.1).
+     */
+    protected void generatePossibleEvent() {
+        Random rng = new Random();
+        if (rng.nextDouble() < cEventThreshold) {
+            cEventGoing = true;
+            switch (rng.nextInt(cNumberOfSinglePlayerEvents)) {
+                case (0):
+                    cEvent = new FishingStrollEvent();
+                    break;
+                default:
+                    cEvent = new FollowTheFishEvent();
+                    break;
+            }
+            AudioPlayer.getInstance().playEventStarted();
+            cNewEventSubject.update(cEvent);
+        }
     }
 
     /**
@@ -428,6 +427,10 @@ public class Stroll implements Observer {
             this.cState = state;
         }
     }
+
+
+
+
 
 
 }
