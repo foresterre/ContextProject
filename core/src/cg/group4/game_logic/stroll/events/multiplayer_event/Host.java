@@ -21,6 +21,10 @@ import java.net.SocketException;
  */
 public abstract class Host {
     /**
+     * The default Byte Array size used for UDP.
+     */
+    protected final int cIJustTookThisAsDefaultBufferSize = 1024;
+    /**
      * DatagramSocket used for UDP messaging.
      */
     protected DatagramSocket cDatagramSocket;
@@ -28,10 +32,6 @@ public abstract class Host {
      * The address of the other person.
      */
     protected InetAddress cOtherClient;
-    /**
-     * The default Byte Array size used for UDP.
-     */
-    protected final int cIJustTookThisAsDefaultBufferSize = 1024;
     /**
      * A buffer for the UDP data.
      */
@@ -92,6 +92,13 @@ public abstract class Host {
     }
 
     /**
+     * Returns the socket connection with the other client.
+     *
+     * @return The socket connection.
+     */
+    protected abstract Socket createSocket();
+
+    /**
      * Sends an Object using UDP.
      * @param object object to send.
      */
@@ -113,7 +120,8 @@ public abstract class Host {
 
     /**
      * Receives an Object using UDP.
-     * @param handler Action to perform with the message.
+     *
+     * @param handler    Action to perform with the message.
      * @param continuous Determines if this action will be performed all the time until cancelled.
      */
     public void receiveUDP(final MessageHandler handler, final boolean continuous) {
@@ -150,19 +158,15 @@ public abstract class Host {
     }
 
     /**
-     * Returns the socket connection with the other client.
-     * @return The socket connection.
-     */
-    protected abstract Socket createSocket();
-
-    /**
      * If the current client is either a host or not.
+     *
      * @return Host or not.
      */
     public abstract boolean isHost();
 
     /**
      * Sends an Object using TCP.
+     *
      * @param object Object to send.
      */
     public void sendTCP(final Serializable object) {
@@ -180,7 +184,8 @@ public abstract class Host {
 
     /**
      * Receives an Object using TCP.
-     * @param handler Action to perform with the message.
+     *
+     * @param handler    Action to perform with the message.
      * @param continuous Determines if this action will be performed all the time until cancelled.
      */
     public void receiveTCP(final MessageHandler handler, final boolean continuous) {
@@ -196,9 +201,7 @@ public abstract class Host {
                                 handler.handleMessage(object);
                             }
                         });
-                    } catch (EOFException e) {
-                        disconnect();
-                    } catch(SocketException e) {
+                    } catch (EOFException | SocketException e) {
                         disconnect();
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();

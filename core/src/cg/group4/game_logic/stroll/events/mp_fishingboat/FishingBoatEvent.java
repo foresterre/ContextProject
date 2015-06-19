@@ -50,6 +50,7 @@ public abstract class FishingBoatEvent extends StrollEvent {
 
     /**
      * Construct a new CraneFishingEvent.
+     *
      * @param otherClient Connection with the other client.
      */
     public FishingBoatEvent(Host otherClient) {
