@@ -1,11 +1,15 @@
 package cg.group4.util.audio;
 
 import cg.group4.data_structures.subscribe.Subject;
+import cg.group4.view.screen_mechanics.Assets;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
+/**
+ * Class that takes care of all audio that needs to be played.
+ */
 public class AudioPlayer {
 
     /**
@@ -40,6 +44,21 @@ public class AudioPlayer {
     protected Music cLastPlayed;
 
     /**
+     * The music that is last played.
+     */
+    protected Sound cEventStartedSound;
+
+    /**
+     * The music that is last played.
+     */
+    protected Sound cTaskCompletedSound;
+
+    /**
+     * The music that is last played.
+     */
+    protected Sound cEventCompletedSound;
+
+    /**
      * Constructor, initialises the subject and fetches all the data needed from the Preferences.
      */
     public AudioPlayer() {
@@ -47,7 +66,9 @@ public class AudioPlayer {
         cPreferences = Gdx.app.getPreferences("AUDIO");
         cAudioEnabled = cPreferences.getBoolean("ENABLED", true);
         cDefaultMusic = Gdx.audio.newMusic(Gdx.files.internal("music/Summer Day.mp3"));
-//        cDefaultMusic = Assets.getInstance().getMusic("music/Summer Day.mp3");
+        cEventStartedSound = Assets.getInstance().getSound("sounds/eventOccured.mp3");
+        cTaskCompletedSound = Assets.getInstance().getSound("sounds/completedTask.wav");
+        cEventCompletedSound = Assets.getInstance().getSound("sounds/eventCompleted.mp3");
         cDefaultMusic.setLooping(true);
         setLastPlayed(cDefaultMusic);
         playAudio(cDefaultMusic);
@@ -134,5 +155,26 @@ public class AudioPlayer {
         if (cAudioEnabled) {
             sound.play();
         }
+    }
+
+    /**
+     * Plays the sound that needs to be played when an event is started.
+     */
+    public final void playEventStarted() {
+        playAudio(cEventStartedSound);
+    }
+
+    /**
+     * Plays the sounds that needs to be played when an event is finished.
+     */
+    public final void playEventFinished() {
+        playAudio(cEventCompletedSound);
+    }
+
+    /**
+     * Plays the sound that needs to be played when a task in an event is completed.
+     */
+    public final void playTaskCompleted() {
+        playAudio(cTaskCompletedSound);
     }
 }
