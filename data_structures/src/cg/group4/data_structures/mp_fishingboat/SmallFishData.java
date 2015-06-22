@@ -3,6 +3,9 @@ package cg.group4.data_structures.mp_fishingboat;
 import java.io.Serializable;
 import java.util.Random;
 
+/**
+ * Data for the small fish from the multiplayer event.
+ */
 public class SmallFishData implements Serializable {
 
     /**

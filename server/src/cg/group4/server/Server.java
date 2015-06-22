@@ -234,6 +234,9 @@ public class Server {
         return cServerSocket.getLocalPort();
     }
 
+    /**
+     * Internal utility class.
+     */
     public static class ServerUtils {
         /**
          * Asks the user for a port. It validates if the port is within proper range.
@@ -242,7 +245,8 @@ public class Server {
          */
         public static int askForPort() {
             int port = -1;
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in, Charset.forName("UTF-8")));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+                    System.in, Charset.forName("UTF-8")));
             do {
                 LOGGER.info("Please enter a port number:");
                 try {

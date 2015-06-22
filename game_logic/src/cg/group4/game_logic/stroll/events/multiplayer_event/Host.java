@@ -74,7 +74,7 @@ public abstract class Host {
      */
     public void connect() {
         cSocket = createSocket();
-        if(cSocket != null) {
+        if (cSocket != null) {
             cIsConnected = true;
             cOtherClient = cSocket.getInetAddress();
             try {
