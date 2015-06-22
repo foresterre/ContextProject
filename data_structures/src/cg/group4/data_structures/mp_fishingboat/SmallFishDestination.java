@@ -2,6 +2,9 @@ package cg.group4.data_structures.mp_fishingboat;
 
 import java.io.Serializable;
 
+/**
+ * Destination data class for the small fish.
+ */
 public class SmallFishDestination implements Serializable {
 
     /**

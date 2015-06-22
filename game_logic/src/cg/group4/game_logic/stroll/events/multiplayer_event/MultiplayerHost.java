@@ -16,7 +16,7 @@ public class MultiplayerHost extends Host {
     /**
      * Socket used to accept incoming connection.
      */
-    ServerSocket cServerSocket;
+    protected ServerSocket cServerSocket;
 
     /**
      * Creates a new MultiplayerHost that has a ServerSocket bound to a random open port.
@@ -34,7 +34,7 @@ public class MultiplayerHost extends Host {
     protected Socket createSocket() {
         try {
             return cServerSocket.accept();
-        } catch(SocketTimeoutException e) {
+        } catch (SocketTimeoutException e) {
             stopHosting();
         } catch (IOException e) {
             e.printStackTrace();

@@ -2,6 +2,9 @@ package cg.group4.data_structures;
 
 import java.io.Serializable;
 
+/**
+ * Data class for the host.
+ */
 public class HostData implements Serializable {
     /**
      * Ip of the host.

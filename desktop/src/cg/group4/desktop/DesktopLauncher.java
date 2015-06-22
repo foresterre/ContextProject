@@ -15,6 +15,13 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
  * on Android.
  */
 public class DesktopLauncher {
+
+    /**
+     * Non public constructor for main method class.
+     */
+    private DesktopLauncher() {
+    }
+
     /**
      * Uses the Aspect enum to determine what height and width to use for testing the screen on desktop.
      */

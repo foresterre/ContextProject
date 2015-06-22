@@ -30,7 +30,8 @@ public class FishingBoatEventData implements Serializable {
      * Places the boat in the middle of the screen with a crane rotation of 0.
      */
     public FishingBoatEventData() {
-        cBoatData = new BoatData(new Coordinate(0.5f, 0.5f), 0);
+        final float baseCoordinate = 0.5f;
+        cBoatData = new BoatData(new Coordinate(baseCoordinate, baseCoordinate), 0);
         cCraneRotation = 0f;
         cSmallFishCoordinates = spawnFish();
     }

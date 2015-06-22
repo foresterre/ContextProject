@@ -10,6 +10,12 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 public class AquariumLauncher {
 
     /**
+     * Main class, and as such has private constructor.
+     */
+    private AquariumLauncher() {
+    }
+
+    /**
      * Starts the application.
      * Uses a borderless fullscreen window.
      *

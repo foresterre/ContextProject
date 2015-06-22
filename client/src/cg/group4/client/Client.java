@@ -377,6 +377,7 @@ public final class Client {
     /**
      * Stores the host ip on the server with a generated code that it will return to let the client connect.
      *
+     * @param port port of the host
      * @param responseHandler The task to execute once a reply is received completed.
      */
     public void hostEvent(int port, final ResponseHandler responseHandler) {
@@ -425,6 +426,7 @@ public final class Client {
     }
 
     /**
+     * Validation of an IPv4 ip.
      * http://stackoverflow.com/questions/4581877/validating-ipv4-string-in-java
      *
      * @param ip input string
