@@ -54,7 +54,7 @@ public class Stroll implements Observer {
     /**
      * The amount of time in seconds that a stroll takes.
      */
-    protected final int STROLL_DURATION = 5 * 60;
+    protected final int STROLL_DURATION = 2 * 60;
     /**
      * The chance an event occurs.
      */

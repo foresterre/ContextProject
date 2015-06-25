@@ -270,7 +270,7 @@ public class Timer implements Observer {
         /**
          * Length definition of one interval.
          */
-        INTERVAL(60 * 60);
+        INTERVAL(5 * 60);
 
         /**
          * Duration of the global timer.

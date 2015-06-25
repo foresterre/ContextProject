@@ -29,7 +29,9 @@ public final class SettingsScreen extends ScreenLogic {
      */
     protected TextButton cButtonVolume,
             cNetworkScreen,
-            cButtonBack;
+            cButtonBack,
+            cButtonResetInterval,
+            cButtonStopInterval;
     /**
      * References to the STROLL Timer and INTERVAL Timer.
      */
@@ -88,6 +90,15 @@ public final class SettingsScreen extends ScreenLogic {
      * Creates the buttons of the settings menu and adds an event listener for each of them.
      */
     protected void createGUI() {
+    	
+    	 cTable.row().expandY();
+         cButtonResetInterval = cGameSkin.generateDefaultMenuButton("Reset Interval");
+         cTable.add(cButtonResetInterval);
+         cButtonResetInterval.addListener(resetIntervalBehaviour());
+
+         cButtonStopInterval = cGameSkin.generateDefaultMenuButton("Stop Interval");
+         cTable.add(cButtonStopInterval);
+         cButtonStopInterval.addListener(stopIntervalBehaviour());
 
         cTable.row().expandY();
         cNetworkScreen = cGameSkin.generateDefaultMenuButton("Network");
@@ -138,6 +149,35 @@ public final class SettingsScreen extends ScreenLogic {
             @Override
             public void changed(final ChangeEvent event, final Actor actor) {
                 AudioPlayer.getInstance().changeAudioEnabled();
+            }
+        };
+    }
+    
+    /**
+     * Resets the interval timer to its default time.
+     *
+     * @return ChangeListener
+     */
+    protected ChangeListener resetIntervalBehaviour() {
+        return new ChangeListener() {
+            @Override
+            public void changed(final ChangeEvent event, final Actor actor) {
+                cIntervalTimer.reset();
+            }
+        };
+    }
+
+    /**
+     * Stops the interval timer.
+     * Resets the internal preferences. By doing so it won't be able to start off the time on which it stopped.
+     *
+     * @return ChangeListener
+     */
+    protected ChangeListener stopIntervalBehaviour() {
+        return new ChangeListener() {
+            @Override
+            public void changed(final ChangeEvent event, final Actor actor) {
+                cIntervalTimer.stop();
             }
         };
     }
